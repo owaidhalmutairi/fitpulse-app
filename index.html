@@ -677,6 +677,7 @@ body {
                     <div class="pulse-dot"></div>
                     <span id="sidebarBpm">74 BPM</span>
                 </div>
+                <button class="ios-btn-calc" id="cloudSyncHeaderBtn" style="background:rgba(50,215,75,0.15); border-color:rgba(50,215,75,0.35); color:var(--ring-exercise)">☁️ حفظ سحابي</button>
                 <button class="ios-btn-calc" id="openCalcBtn">⚖️ حاسبة الوزن</button>
                 <button class="ios-btn-reset" id="resetTodayBtn">🔄 تصفير اليوم</button>
                 <button class="ios-add-btn" id="quickAddMealBtn">+ وجبة</button>
@@ -1069,6 +1070,23 @@ body {
              ========================================================================== -->
         <div class="tab-pane" id="tab-analytics">
             <div class="grid-layout">
+                <!-- PERMANENT CLOUD DATABASE ENGINE CARD -->
+                <div class="ios-card col-12" style="border-color:var(--ring-exercise); background:linear-gradient(135deg, rgba(15,35,20,0.85) 0%, rgba(15,15,25,0.85) 100%)">
+                    <div class="card-title">
+                        <span>☁️ قاعدة البيانات والحفظ السحابي الدائم (Cloud Sync)</span>
+                        <span class="watch-status-pill" style="color:var(--ring-exercise); border-color:var(--ring-exercise)" id="cloudStatusBadge">سحابي جاهز</span>
+                    </div>
+                    <p style="font-size:0.85rem; color:var(--ios-text-sub); margin-top:6px">احفظ وجباتك وسعراتك وتمارينك مباشرةً على سيرفرات سحابة الموقع حتى لا تضيع إذا مسحت سجل المتصفح أو غيرت الجوال!</p>
+
+                    <div style="display:flex; gap:12px; margin-top:14px; flex-wrap:wrap">
+                        <button class="ios-primary-btn" id="cloudSaveBtn" style="flex:1; background:var(--ring-exercise); color:#000; font-weight:800">☁️ رفع وحفظ سحابي فوراً</button>
+                        <button class="ios-secondary-btn" id="cloudRestoreBtn" style="flex:1">📥 استرجاع البيانات من السحابة</button>
+                    </div>
+                    <div style="margin-top:10px; font-size:0.78rem; color:var(--ios-text-sub)">
+                        رمز السحابة الحالي الخاص بك: <strong style="color:var(--ring-exercise)" id="dispCloudCode">لم يُحدد (اضغط رفع لتحديده)</strong>
+                    </div>
+                </div>
+
                 <div class="ios-card col-12">
                     <div class="card-title">
                         <span>📅 السجل التاريخي الكامل وتتبع الأيام السابقة</span>
@@ -1339,6 +1357,7 @@ body {
                 apple: { connected: true, heartRate: 74 },
                 huawei: { connected: true, heartRate: 72 }
             },
+            cloudSyncCode: '',
             activeWorkout: { isLive: false, timerId: null, seconds: 0, burnedCalories: 0, heartRate: 110 }
         },
 
@@ -1365,6 +1384,7 @@ body {
                     const parsed = JSON.parse(saved);
                     if (parsed.profiles) this.state.profiles = parsed.profiles;
                     if (parsed.activeProfileId) this.state.activeProfileId = parsed.activeProfileId;
+                    if (parsed.cloudSyncCode) this.state.cloudSyncCode = parsed.cloudSyncCode;
                 }
             } catch (e) {}
         },
@@ -1373,9 +1393,77 @@ body {
             try {
                 localStorage.setItem('apple_fitness_multiuser_v5', JSON.stringify({
                     profiles: this.state.profiles,
-                    activeProfileId: this.state.activeProfileId
+                    activeProfileId: this.state.activeProfileId,
+                    cloudSyncCode: this.state.cloudSyncCode
                 }));
+                if (this.state.cloudSyncCode) {
+                    this.uploadToCloud(false);
+                }
             } catch (e) {}
+        },
+
+        async uploadToCloud(manual = false) {
+            if (!this.state.cloudSyncCode) {
+                if (manual) {
+                    const code = prompt('أدخل رمز السحابة الخاص بك لحفظ جميع بياناتك أونلاين (مثال: owaid2026):', 'owaid2026');
+                    if (code && code.trim()) {
+                        this.state.cloudSyncCode = code.trim().toLowerCase();
+                        this.saveState();
+                    } else return;
+                } else return;
+            }
+
+            try {
+                this.logSync(`جاري الحفظ السحابي أونلاين على الرمز (${this.state.cloudSyncCode})...`);
+                const payload = {
+                    profiles: this.state.profiles,
+                    activeProfileId: this.state.activeProfileId,
+                    lastUpdated: new Date().toISOString()
+                };
+
+                const res = await fetch(`https://kvdb.io/8x8F9N3w6vK2/${this.state.cloudSyncCode}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (res.ok) {
+                    this.logSync(`تم الحفظ السحابي بنجاح على سيرفر الموقع! ☁️✅`);
+                    if (manual) alert(`تم حفظ وتسجيل بياناتك سحابياً بنجاح على سيرفر الموقع تحت الرمز: (${this.state.cloudSyncCode})! ☁️✅\nيمكنك فتح موقعك من أي جوال وكتابة هذا الرمز لإنزال سجلاتك فوراً.`);
+                    this.updateUI();
+                }
+            } catch (e) {
+                if (manual) alert('حدث خطأ في الاتصال بالسحابة، يرجى التأكد من الاتصال بالإنترنت.');
+            }
+        },
+
+        async downloadFromCloud() {
+            const code = prompt('أدخل رمزك السحابي لاسترجاع ومزامنة بياناتك من سيرفر الموقع:', this.state.cloudSyncCode || 'owaid2026');
+            if (!code || !code.trim()) return;
+
+            const targetCode = code.trim().toLowerCase();
+            try {
+                this.logSync(`جاري جلب البيانات السحابية من سيرفر الموقع...`);
+                const res = await fetch(`https://kvdb.io/8x8F9N3w6vK2/${targetCode}`);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.profiles) {
+                        this.state.profiles = data.profiles;
+                        if (data.activeProfileId) this.state.activeProfileId = data.activeProfileId;
+                        this.state.cloudSyncCode = targetCode;
+                        this.saveState();
+                        this.renderProfileDropdown();
+                        this.updateUI();
+                        alert(`تم استرجاع ومزامنة جميع سجلاتك بنجاح من سيرفر الموقع! 🎉☁️`);
+                    } else {
+                        alert('لم يتم العثور على سجلات محفوظة بهذا الرمز!');
+                    }
+                } else {
+                    alert('لم نجد سجلات مسبقة بهذا الرمز، تأكد من الرمز المدخل!');
+                }
+            } catch (e) {
+                alert('تعذر الاتصال بالسحابة، يرجى المحاولة مرة أخرى.');
+            }
         },
 
         switchProfile(profileId) {
@@ -1613,6 +1701,10 @@ body {
             document.getElementById('exportDataBtn')?.addEventListener('click', () => this.exportData());
             document.getElementById('importDataBtn')?.addEventListener('click', () => this.importData());
 
+            document.getElementById('cloudSyncHeaderBtn')?.addEventListener('click', () => this.uploadToCloud(true));
+            document.getElementById('cloudSaveBtn')?.addEventListener('click', () => this.uploadToCloud(true));
+            document.getElementById('cloudRestoreBtn')?.addEventListener('click', () => this.downloadFromCloud());
+
             ['calcWeight', 'calcHeight', 'calcAge', 'calcGender', 'calcGoal', 'calcActivity'].forEach(id => {
                 document.getElementById(id)?.addEventListener('input', () => this.computeTDEEPreview());
                 document.getElementById(id)?.addEventListener('change', () => this.computeTDEEPreview());
@@ -1784,6 +1876,13 @@ body {
             this.renderWorkouts();
             this.renderHistory();
             this.updateWatchUI();
+
+            if (document.getElementById('dispCloudCode')) {
+                document.getElementById('dispCloudCode').textContent = this.state.cloudSyncCode || 'لم يُحدد (اضغط رفع لتحديده)';
+            }
+            if (document.getElementById('cloudStatusBadge')) {
+                document.getElementById('cloudStatusBadge').textContent = this.state.cloudSyncCode ? '☁️ متصل بالسحابة' : 'سحابي جاهز';
+            }
         },
 
         renderMeals() {
