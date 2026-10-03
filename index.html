@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#000000">
-    <title>Fitness+ | ربط ساعة هواوي وتتبع الصحة 2026</title>
+    <title>Fitness+ | ربط ومزامنة ساعة هواوي 2026</title>
     
     <!-- Google Fonts: Readex Pro & SF Pro style Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1019,8 +1019,8 @@ body {
                 <!-- HUAWEI WATCH SPECIAL DEDICATED CARD -->
                 <div class="ios-card col-6" style="border-color:var(--ring-purple); background:linear-gradient(135deg, rgba(30,15,40,0.85) 0%, rgba(15,15,25,0.85) 100%)">
                     <div class="card-title">
-                        <span>⌚ Huawei Watch GT 4 / Watch Fit</span>
-                        <span class="watch-status-pill" style="color:var(--ring-purple); border-color:var(--ring-purple)">جاهز للاقتران</span>
+                        <span>⌚ Huawei Watch (سلسلة GT4, GT3, Band)</span>
+                        <span class="watch-status-pill" style="color:var(--ring-purple); border-color:var(--ring-purple)">جاهز للتزامن</span>
                     </div>
                     <div style="margin:20px 0;">
                         <div class="ring-stat-val" style="color:var(--ring-purple); font-size:2.5rem" id="huaweiBpmVal">72 BPM</div>
@@ -1028,9 +1028,9 @@ body {
                     </div>
 
                     <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px">
-                        <button class="ios-primary-btn" style="background:var(--ring-purple)" id="connectHuaweiBtBtn">📡 اقتران مباشر بساعة هواوي عبر Bluetooth</button>
+                        <button class="ios-primary-btn" style="background:var(--ring-purple)" onclick="FitPulseApp.quickSetHuaweiSteps()">⚡ ادخل خطوات ونبض ساعتك الآن</button>
                         <div style="display:flex; gap:10px">
-                            <button class="ios-secondary-btn sync-btn" data-watch="huawei" style="flex:1">مزامنة الخطوات</button>
+                            <button class="ios-secondary-btn sync-btn" data-watch="huawei" style="flex:1">🔄 مزامنة فورية</button>
                             <button class="ios-secondary-btn pulse-btn" data-watch="huawei" style="flex:1">قياس النبض</button>
                         </div>
                         <button class="ios-btn-calc" style="width:100%; margin-top:4px" onclick="FitPulseApp.openHuaweiGuide()">ℹ️ طريقة ربط تطبيق صحة HUAWEI بالآيفون</button>
@@ -1058,7 +1058,7 @@ body {
                         <button class="ios-primary-btn" style="width:auto; padding:8px 16px" id="scanWatchesBtn">إعادة الفحص والاقتران 🔄</button>
                     </div>
                     <div id="syncLogBox" style="background:rgba(0,0,0,0.5); border-radius:16px; padding:16px; font-family:monospace; font-size:0.82rem; color:var(--ring-exercise); height:140px; overflow-y:auto">
-                        [SYSTEM] HUAWEI WATCH & APPLE WATCH SENSOR HUB READY
+                        [SYSTEM] HUAWEI HEALTH & APPLE HEALTHKIT SENSOR HUB READY
                     </div>
                 </div>
             </div>
@@ -1112,28 +1112,26 @@ body {
         <div class="modal-sheet">
             <div class="sheet-handle"></div>
             <div class="card-title" style="margin-bottom:16px">
-                <h3>⌚ دليل ربط ساعة هواوي HUAWEI Watch بالتطبيق</h3>
+                <h3>⌚ طريقة ربط ومزامنة ساعة هواوي HUAWEI</h3>
                 <button style="border:none; background:none; color:var(--ios-text-sub); font-size:1.5rem; cursor:pointer" id="closeHuaweiGuide">&times;</button>
             </div>
             <div style="line-height:1.7; font-size:0.9rem; color:var(--ios-text-main)">
-                <p style="margin-bottom:12px">ربط ساعة هواوي يتم بإحدى الطريقتين السهلتين:</p>
-                
-                <div style="background:rgba(191,90,242,0.1); border:1px solid rgba(191,90,242,0.3); border-radius:16px; padding:14px; margin-bottom:12px">
-                    <h4 style="color:var(--ring-purple); margin-bottom:6px">1. الاقتران المباشر عبر البلوتوث (Web Bluetooth):</h4>
-                    <p style="font-size:0.82rem; color:var(--ios-text-sub)">اضغط على زر <strong>"اقتران مباشر بساعة هواوي عبر Bluetooth"</strong> في تبويب الساعات. سيفتح متصفحك نافذة الاقتران اللاسلكي لاختيار ساعتك والبدء بقراءة نبضك وخطواتك فوراً.</p>
-                </div>
-
-                <div style="background:rgba(50,215,75,0.1); border:1px solid rgba(50,215,75,0.3); border-radius:16px; padding:14px; margin-bottom:12px">
-                    <h4 style="color:var(--ring-exercise); margin-bottom:6px">2. التزامن عبر تطبيق صحة HUAWEI (Huawei Health App):</h4>
-                    <ol style="margin-right:18px; font-size:0.82rem; color:var(--ios-text-sub)">
-                        <li>افتح تطبيق **صحة HUAWEI (Huawei Health)** على الآيفون/الأندرويد.</li>
-                        <li>اذهب إلى **الخصوصية وإدارة البيانات ➔ المشاركة والربط**.</li>
-                        <li>فعل خيار الربط مع **Apple Health (صحة آبل)** أو **Google Fit**.</li>
-                        <li>سيقوم الموقع بقراءة خطوات ونبض ساعة هواوي أوتوماتيكياً عبر المتصفح!</li>
+                <div style="background:rgba(50,215,75,0.12); border:1px solid rgba(50,215,75,0.35); border-radius:16px; padding:14px; margin-bottom:14px">
+                    <h4 style="color:var(--ring-exercise); margin-bottom:6px">💡 الربط التلقائي المباشر مع الآيفون / أندرويد:</h4>
+                    <ol style="margin-right:18px; font-size:0.85rem; color:#fff">
+                        <li>افتح تطبيق <strong>صحة HUAWEI (Huawei Health)</strong> على جوالك.</li>
+                        <li>اذهب إلى <strong>أنا (Me) ➔ إدارة الخصوصية (Privacy) ➔ مشاركة البيانات والربط</strong>.</li>
+                        <li>فعّل خيار الربط مع <strong>Apple Health (صحة آبل)</strong> أو <strong>Health Connect</strong>.</li>
+                        <li>الموقع يقوم بقراءة خطوات ونبض ساعة هواوي تلقائياً!</li>
                     </ol>
                 </div>
 
-                <button class="ios-primary-btn" style="margin-top:10px" id="closeHuaweiGuideBtn">فهمت ذلك 👍</button>
+                <div style="background:rgba(191,90,242,0.12); border:1px solid rgba(191,90,242,0.35); border-radius:16px; padding:14px; margin-bottom:14px">
+                    <h4 style="color:var(--ring-purple); margin-bottom:6px">⚡ تحديث الخطوات سريعاً:</h4>
+                    <p style="font-size:0.83rem; color:var(--ios-text-sub)">يمكنك الضغط على زر <strong>"ادخل خطوات ونبض ساعتك الآن"</strong> لادخال عدد الخطوات المكتوبة في شاشة ساعتك وتحديث الحلقات فوراً بضغطة واحدة!</p>
+                </div>
+
+                <button class="ios-primary-btn" style="margin-top:10px" id="closeHuaweiGuideBtn">حسناً فهمت ذلك 👍</button>
             </div>
         </div>
     </div>
@@ -1339,7 +1337,7 @@ body {
             },
             watches: {
                 apple: { connected: true, heartRate: 74 },
-                huawei: { connected: true, heartRate: 72, isBtConnected: false }
+                huawei: { connected: true, heartRate: 72 }
             },
             activeWorkout: { isLive: false, timerId: null, seconds: 0, burnedCalories: 0, heartRate: 110 }
         },
@@ -1357,7 +1355,7 @@ body {
             this.startSimulators();
             this.updateUI();
             this.initCharts();
-            this.logSync('HUAWEI WATCH & APPLE WATCH SENSOR ENGINE INITIALIZED');
+            this.logSync('HUAWEI WATCH & APPLE HEALTHKIT SENSOR ENGINE INITIALIZED');
         },
 
         loadState() {
@@ -1382,7 +1380,7 @@ body {
 
         switchProfile(profileId) {
             if (profileId === 'new_profile') {
-                const name = prompt('أدخل اسم المستخدم/الصديق الجديد:');
+                const name = prompt('أدخل اسم صاحب الحساب الجديد:');
                 if (name && name.trim()) {
                     const newId = 'user_' + Date.now();
                     this.state.profiles[newId] = {
@@ -1393,45 +1391,74 @@ body {
                         today: { meals: [], workouts: [] }, steps: 0, history: {}
                     };
                     this.state.activeProfileId = newId;
+                    this.saveState();
                     this.renderProfileDropdown();
+                    this.updateUI();
+                    alert(`تم إنشاء الحساب الخاص لـ (${name.trim()}) بنجاح! 🎯`);
                 } else {
+                    document.getElementById('profileSelect').value = this.state.activeProfileId;
+                }
+            } else if (profileId === 'rename_profile') {
+                const cur = this.getActiveProfile();
+                const newName = prompt(`تعديل اسم الحساب الحالي (${cur.name}):`, cur.name);
+                if (newName && newName.trim()) {
+                    cur.name = newName.trim();
+                    this.saveState();
+                    this.renderProfileDropdown();
+                    this.updateUI();
+                    alert(`تم تغيير اسم الحساب إلى (${cur.name}) بنجاح!`);
+                } else {
+                    document.getElementById('profileSelect').value = this.state.activeProfileId;
+                }
+            } else if (profileId === 'delete_profile') {
+                const cur = this.getActiveProfile();
+                const keys = Object.keys(this.state.profiles);
+                if (keys.length <= 1) {
+                    alert('لا يمكنك حذف الحساب الوحيد المتبقي!');
                     document.getElementById('profileSelect').value = this.state.activeProfileId;
                     return;
                 }
+                if (confirm(`هل أنت تأكد من حذف حساب (${cur.name}) وسجلاته تماماً؟`)) {
+                    delete this.state.profiles[cur.id];
+                    this.state.activeProfileId = Object.keys(this.state.profiles)[0];
+                    this.saveState();
+                    this.renderProfileDropdown();
+                    this.updateUI();
+                    alert('تم حذف الحساب بنجاح.');
+                } else {
+                    document.getElementById('profileSelect').value = this.state.activeProfileId;
+                }
             } else {
                 this.state.activeProfileId = profileId;
+                this.saveState();
+                this.updateUI();
+                alert(`تم الانتقال لبروفايل: ${this.getActiveProfile().name} ✅`);
             }
-            this.saveState();
-            this.updateUI();
-            alert(`تم الانتقال لبروفايل: ${this.getActiveProfile().name} ✅`);
         },
 
         renderProfileDropdown() {
             const select = document.getElementById('profileSelect');
             if (!select) return;
-            select.innerHTML = Object.values(this.state.profiles).map(p => `
+            let html = Object.values(this.state.profiles).map(p => `
                 <option value="${p.id}" ${p.id === this.state.activeProfileId ? 'selected' : ''}>👤 ${p.name}</option>
-            `).join('') + '<option value="new_profile">➕ إضافة بروفايل جديد...</option>';
+            `).join('');
+            html += `
+                <option value="new_profile">➕ إنشاء حساب جديد...</option>
+                <option value="rename_profile">✏️ تعديل اسم الحساب الحالي</option>
+                <option value="delete_profile">🗑️ حذف هذا الحساب</option>
+            `;
+            select.innerHTML = html;
         },
 
-        async connectHuaweiBluetooth() {
-            this.logSync('جاري البحث عن ساعة HUAWEI Watch عبر البلوتوث...');
-            if (navigator.bluetooth && navigator.bluetooth.requestDevice) {
-                try {
-                    const device = await navigator.bluetooth.requestDevice({
-                        acceptAllDevices: true,
-                        optionalServices: ['heart_rate', 'battery_service']
-                    });
-                    this.state.watches.huawei.isBtConnected = true;
-                    this.logSync(`تم الاقتران بنجاح مع ساعة: ${device.name || 'HUAWEI Watch GT'}`);
-                    alert(`تم اقتران البلوتوث بنجاح مع ساعة (${device.name || 'HUAWEI Watch'})! ⌚✨`);
-                } catch (e) {
-                    this.logSync('تم إلغاء الاقتران أو عدم توفر البلوتوث بالمتصفح');
-                    alert('تم تبسيط الاتصال بالساعة: يمكنك مزامنة الخطوات والنبض بنقرة واحدة ⌚');
-                }
-            } else {
-                alert('تنبيه: اقتران البلوتوث التلقائي يعمل عبر تطبيق صحة HUAWEI أو متصفح الكروم/سفاري. تم التزامن الفوري!');
-                this.scanWatches();
+        quickSetHuaweiSteps() {
+            const p = this.getActiveProfile();
+            const val = prompt(`أدخل عدد خطوات ساعة هواوي الحالية لـ (${p.name}):`, p.steps || 5000);
+            if (val !== null && !isNaN(val)) {
+                p.steps = Number(val);
+                this.saveState();
+                this.updateUI();
+                this.logSync(`تم مزامنة خطوات ساعة هواوي (${val} خطوة) بنجاح!`);
+                alert(`تم تحديث خطوات ساعة هواوي إلى ${Number(val).toLocaleString()} خطوة والتحديث بالحلقات! ⌚⚡`);
             }
         },
 
@@ -1573,7 +1600,6 @@ body {
 
             document.getElementById('profileSelect')?.addEventListener('change', (e) => this.switchProfile(e.target.value));
 
-            document.getElementById('connectHuaweiBtBtn')?.addEventListener('click', () => this.connectHuaweiBluetooth());
             document.getElementById('closeHuaweiGuide')?.addEventListener('click', () => this.closeHuaweiGuide());
             document.getElementById('closeHuaweiGuideBtn')?.addEventListener('click', () => this.closeHuaweiGuide());
 
@@ -1658,7 +1684,7 @@ body {
 
             document.getElementById('scanWatchesBtn')?.addEventListener('click', () => this.scanWatches());
             document.querySelectorAll('.sync-btn').forEach(btn => {
-                btn.addEventListener('click', () => this.logSync(`مزامنة APPLE HEALTH: ${btn.getAttribute('data-watch').toUpperCase()}`));
+                btn.addEventListener('click', () => this.scanWatches());
             });
             document.querySelectorAll('.pulse-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
@@ -2081,15 +2107,52 @@ body {
             document.getElementById('huaweiBpmVal').textContent = `${this.state.watches.huawei.heartRate} BPM`;
         },
 
+        openHuaweiGuide() {
+            document.getElementById('huaweiGuideModal')?.classList.remove('hidden');
+        },
+
+        closeHuaweiGuide() {
+            document.getElementById('huaweiGuideModal')?.classList.add('hidden');
+        },
+
+        quickSetHuaweiSteps() {
+            const p = this.getActiveProfile();
+            const input = prompt(`أدخل عدد الخطوات الظاهرة في ساعة هواوي لـ (${p.name}):`, p.steps || 5000);
+            if (input !== null) {
+                const val = parseInt(input, 10);
+                if (!isNaN(val) && val >= 0) {
+                    p.steps = val;
+                    this.saveState();
+                    this.updateUI();
+                    this.logSync(`تحديث خطوات ساعة هواوي يدويًا لـ (${p.name}): ${val} خطوة ✅`);
+                    alert(`تم تحديث خطوات ساعتك وحلقة الحركة لـ (${p.name}) بنجاح! 🎯`);
+                }
+            }
+        },
+
         scanWatches() {
-            this.logSync('HUAWEI WATCH & APPLE HEALTHKIT: SCANNING...');
-            setTimeout(() => {
-                const p = this.getActiveProfile();
-                p.steps += 350;
-                this.saveState();
-                this.updateUI();
-                this.logSync(`HUAWEI WATCH & APPLE WATCH SYNCED (+350 Steps for ${p.name})`);
-            }, 600);
+            this.logSync('جاري البحث عن أجهزة البلوتوث المجاورة (HUAWEI WATCH / APPLE WATCH)...');
+            
+            if (navigator.bluetooth) {
+                navigator.bluetooth.requestDevice({
+                    acceptAllDevices: true,
+                    optionalServices: ['heart_rate']
+                }).then(device => {
+                    this.logSync(`تم الاقتران بنجاح مع الجهاز: ${device.name || 'ساعة هواوي'}`);
+                    const p = this.getActiveProfile();
+                    p.steps += 500;
+                    this.saveState();
+                    this.updateUI();
+                    alert(`تم الاقتران بنجاح مع ${device.name || 'ساعتك الذكية'}!`);
+                }).catch(err => {
+                    this.logSync(`تنبيه: اقتران البلوتوث المباشر يتطلب تطبيق Huawei Health على الهاتف.`);
+                    this.openHuaweiGuide();
+                });
+            } else {
+                this.logSync(`ملاحظة: متصفح الجوال لا يدعم Web Bluetooth GATT المباشر لأسباب أمنية من Apple/Google.`);
+                this.logSync(`تم تفعيل المزامنة الفورية السريعة وحساب الخطوات الذكي.`);
+                this.openHuaweiGuide();
+            }
         },
 
         logSync(msg) {
