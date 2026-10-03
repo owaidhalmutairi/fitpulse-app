@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#000000">
-    <title>Fitness+ | الصحة واللياقة والذكاء الاصطناعي 2026</title>
+    <title>Fitness+ | الصحة واللياقة وتتبع الحسابات متعدد المستخدمين 2026</title>
     
     <!-- Google Fonts: Readex Pro & SF Pro style Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -77,11 +77,11 @@ body {
     position: sticky;
     top: 0;
     z-index: 200;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(25px) saturate(180%);
     -webkit-backdrop-filter: blur(25px) saturate(180%);
     border-bottom: 1px solid var(--ios-glass-border);
-    padding: 14px 20px;
+    padding: 12px 18px;
 }
 
 .header-container {
@@ -97,30 +97,36 @@ body {
 .user-profile-badge {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
 .profile-avatar {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--ring-move), var(--ring-purple));
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     box-shadow: 0 4px 15px rgba(255, 45, 85, 0.3);
 }
 
-.user-info h2 {
-    font-size: 1.2rem;
-    font-weight: 800;
-    letter-spacing: -0.3px;
+.profile-select-box {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--ios-glass-border);
+    border-radius: var(--radius-ios-pill);
+    color: #fff;
+    padding: 6px 14px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    outline: none;
+    cursor: pointer;
 }
 
-.user-info p {
-    font-size: 0.75rem;
-    color: var(--ios-text-sub);
+.profile-select-box option {
+    background: #1c1c1e;
+    color: #fff;
 }
 
 .header-right-actions {
@@ -162,9 +168,9 @@ body {
     border: 1px solid rgba(10, 132, 255, 0.35);
     border-radius: var(--radius-ios-pill);
     color: var(--ring-stand);
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: 700;
-    padding: 8px 14px;
+    padding: 7px 12px;
     cursor: pointer;
     transition: all 0.2s ease;
 }
@@ -179,9 +185,9 @@ body {
     border: 1px solid var(--ios-glass-border);
     border-radius: var(--radius-ios-pill);
     color: var(--ios-text-sub);
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: 600;
-    padding: 8px 14px;
+    padding: 7px 12px;
     cursor: pointer;
     transition: all 0.2s ease;
 }
@@ -199,7 +205,7 @@ body {
     color: #fff;
     font-size: 0.85rem;
     font-weight: 700;
-    padding: 8px 18px;
+    padding: 7px 16px;
     cursor: pointer;
     box-shadow: 0 4px 20px rgba(255, 45, 85, 0.4);
     transition: transform 0.2s ease;
@@ -215,7 +221,7 @@ body {
 
 .main-content {
     max-width: 1200px;
-    margin: 20px auto 0;
+    margin: 18px auto 0;
     padding: 0 16px;
 }
 
@@ -423,7 +429,7 @@ body {
     background: rgba(0, 0, 0, 0.4);
     border: 1px solid var(--ios-glass-border);
     border-radius: 20px;
-    height: 300px;
+    height: 280px;
     padding: 16px;
     overflow-y: auto;
     display: flex;
@@ -651,15 +657,18 @@ body {
 <body>
 
     <!-- ==========================================================================
-         TOP iOS HEADER BAR
+         TOP iOS HEADER BAR (MULTI-USER SWITCHER)
          ========================================================================== -->
     <header class="app-header">
         <div class="header-container">
             <div class="user-profile-badge">
-                <div class="profile-avatar">🏋️‍♂️</div>
-                <div class="user-info">
-                    <h2>الصحة واللياقة Fitness+</h2>
-                    <p id="auraDateText">اليوم</p>
+                <div class="profile-avatar" id="activeAvatar">👤</div>
+                <div>
+                    <select class="profile-select-box" id="profileSelect">
+                        <option value="user_1">👤 عويد (المستخدم الرئيسي)</option>
+                        <option value="user_2">👤 صديقي (المستخدم الثاني)</option>
+                        <option value="new_profile">➕ إضافة بروفايل جديد...</option>
+                    </select>
                 </div>
             </div>
 
@@ -668,7 +677,7 @@ body {
                     <div class="pulse-dot"></div>
                     <span id="sidebarBpm">74 BPM</span>
                 </div>
-                <button class="ios-btn-calc" id="openCalcBtn">⚖️ حاسبة الوزن والطول</button>
+                <button class="ios-btn-calc" id="openCalcBtn">⚖️ حاسبة الوزن</button>
                 <button class="ios-btn-reset" id="resetTodayBtn">🔄 تصفير اليوم</button>
                 <button class="ios-add-btn" id="quickAddMealBtn">+ وجبة</button>
             </div>
@@ -738,7 +747,7 @@ body {
                             <div class="ring-progress-track">
                                 <div class="ring-progress-fill" id="barProt" style="width: 0%; background: var(--ring-stand);"></div>
                             </div>
-                            <div style="font-size:0.75rem; color:var(--ios-text-sub); margin-top:6px">الهدف: <span id="dashGoalProt">160</span> جرام</div>
+                            <div style="font-size:0.75rem; color:var(--ios-text-sub); margin-top:6px">الهدف: <span id="dashGoalProt">150</span> جرام</div>
                         </div>
                     </div>
                 </div>
@@ -746,7 +755,7 @@ body {
                 <!-- BODY & NUTRITION PROFILE CARD -->
                 <div class="ios-card col-12" style="background:rgba(10, 132, 255, 0.08); border-color:rgba(10, 132, 255, 0.25)">
                     <div class="card-title">
-                        <span>⚖️ بيانات جسمك الحالية (بيانات الحساب)</span>
+                        <span>⚖️ بيانات بروفايل: <strong id="dispProfileName" style="color:var(--ring-stand)">عويد</strong></span>
                         <button class="ios-btn-calc" onclick="FitPulseApp.openCalcModal()">⚙️ تعديل الوزن والطول والهدف</button>
                     </div>
                     <div style="display:flex; justify-content:space-around; flex-wrap:wrap; gap:14px; text-align:center; padding:6px 0">
@@ -781,7 +790,7 @@ body {
                     </div>
 
                     <div style="margin-bottom: 16px;">
-                        <div class="ring-stat-header"><span>🥩 البروتين (Protein)</span> <span id="nutPText">0g / 160g (0%)</span></div>
+                        <div class="ring-stat-header"><span>🥩 البروتين (Protein)</span> <span id="nutPText">0g / 150g (0%)</span></div>
                         <div class="ring-progress-track"><div class="ring-progress-fill" id="nutPBar" style="background:var(--ring-stand); width:0%"></div></div>
                     </div>
 
@@ -799,8 +808,8 @@ body {
                 <!-- TODAY'S LOGGED MEALS -->
                 <div class="ios-card col-6">
                     <div class="card-title">
-                        <span>🍱 وجبات اليوم</span>
-                        <button class="ios-btn-reset" style="padding:4px 10px; font-size:0.72rem" id="loadDemoMealsBtn">إضافة نماذج وجبات 🍽️</button>
+                        <span>🍱 وجبات اليوم الحالية</span>
+                        <button class="ios-btn-reset" style="padding:4px 10px; font-size:0.72rem" id="loadDemoMealsBtn">نماذج وجبات 🍽️</button>
                     </div>
                     <div class="ios-list" id="dashMealsList">
                         <!-- Populated by JS -->
@@ -822,7 +831,7 @@ body {
 
                     <div class="chat-box-container" id="chatLogsArea">
                         <div class="chat-bubble-ai">
-                            أهلاً بك! أنا مساعد Gemini AI الذكي. اكتب سؤالك عن البروتين، السعرات، أو اكتب وجبتك لتحليلها فوراً!
+                            أهلاً بك! أنا مساعد Gemini AI الذكي. اكتب سؤالك عن البروتين والسعرات أو أكل اليوم وسأجيبك فوراً!
                         </div>
                     </div>
 
@@ -1050,15 +1059,30 @@ body {
         </div>
 
         <!-- ==========================================================================
-             TAB 6: ANALYTICS & REPORTS
+             TAB 6: ANALYTICS & MULTI-DAY HISTORICAL LOGS
              ========================================================================== -->
         <div class="tab-pane" id="tab-analytics">
             <div class="grid-layout">
+                <div class="ios-card col-12">
+                    <div class="card-title">
+                        <span>📅 السجل التاريخي الكامل وتتبع الأيام السابقة</span>
+                        <div style="display:flex; gap:10px">
+                            <button class="ios-btn-calc" id="exportDataBtn">📥 تصدير السجل (نسخة احتياطية)</button>
+                            <button class="ios-btn-reset" id="importDataBtn">📤 استيراد سجل صديقك</button>
+                        </div>
+                    </div>
+                    <p style="font-size:0.85rem; color:var(--ios-text-sub); margin-bottom:16px">يتم حفظ جميع وجباتك وسعراتك وتمارينك يومياً لكل مستخدم بصورة داحية في السجل التاريخي:</p>
+                    
+                    <div class="ios-list" id="historyDaysList">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
                 <div class="ios-card col-8">
                     <div class="card-title">
-                        <span>📊 أداء السعرات الأسبوعي</span>
+                        <span>📊 مقارنة السعرات الأسبوعية</span>
                     </div>
-                    <div style="height:320px;">
+                    <div style="height:300px;">
                         <canvas id="calChart"></canvas>
                     </div>
                 </div>
@@ -1066,7 +1090,7 @@ body {
                     <div class="card-title">
                         <span>🍩 نسبة المغذيات (Macros)</span>
                     </div>
-                    <div style="height:320px;">
+                    <div style="height:300px;">
                         <canvas id="macroChart"></canvas>
                     </div>
                 </div>
@@ -1251,33 +1275,61 @@ body {
     </nav>
 
     <!-- ==========================================================================
-         JAVASCRIPT ENGINE
+         JAVASCRIPT ENGINE (MULTI-USER & MULTI-DAY LOGGING SYSTEM)
          ========================================================================== -->
     <script>
     const FitPulseApp = {
         state: {
+            activeProfileId: 'user_1',
             currentTab: 'dashboard',
-            user: { 
-                weight: 75, 
-                height: 175, 
-                age: 25, 
-                gender: 'male', 
-                goal: 'fat_loss',
-                calorieGoal: 2200, 
-                proteinGoal: 150, 
-                carbsGoal: 220, 
-                fatsGoal: 70, 
-                stepsGoal: 10000 
+            profiles: {
+                'user_1': {
+                    id: 'user_1',
+                    name: 'عويد (المستخدم الرئيسي)',
+                    weight: 75,
+                    height: 175,
+                    age: 25,
+                    gender: 'male',
+                    goal: 'fat_loss',
+                    calorieGoal: 2200,
+                    proteinGoal: 150,
+                    carbsGoal: 220,
+                    fatsGoal: 70,
+                    stepsGoal: 10000,
+                    today: { meals: [], workouts: [] },
+                    steps: 0,
+                    history: {}
+                },
+                'user_2': {
+                    id: 'user_2',
+                    name: 'صديقي (المستخدم الثاني)',
+                    weight: 82,
+                    height: 180,
+                    age: 26,
+                    gender: 'male',
+                    goal: 'muscle_gain',
+                    calorieGoal: 2600,
+                    proteinGoal: 170,
+                    carbsGoal: 280,
+                    fatsGoal: 75,
+                    stepsGoal: 10000,
+                    today: { meals: [], workouts: [] },
+                    steps: 0,
+                    history: {}
+                }
             },
             watches: {
-                apple: { connected: true, heartRate: 74, steps: 0, calories: 0 },
-                huawei: { connected: true, heartRate: 72, steps: 0 }
-            },
-            today: {
-                meals: [],
-                workouts: []
+                apple: { connected: true, heartRate: 74 },
+                huawei: { connected: true, heartRate: 72 }
             },
             activeWorkout: { isLive: false, timerId: null, seconds: 0, burnedCalories: 0, heartRate: 110 }
+        },
+
+        getActiveProfile() {
+            if (!this.state.profiles[this.state.activeProfileId]) {
+                this.state.activeProfileId = 'user_1';
+            }
+            return this.state.profiles[this.state.activeProfileId];
         },
 
         init() {
@@ -1286,38 +1338,69 @@ body {
             this.startSimulators();
             this.updateUI();
             this.initCharts();
-            this.logSync('APPLE HEALTHKIT & HUAWEI HEALTH INITIALIZED');
+            this.logSync('MULTI-USER & MULTI-DAY SYSTEM READY');
         },
 
         loadState() {
             try {
-                const saved = localStorage.getItem('apple_fitness_state_v4');
+                const saved = localStorage.getItem('apple_fitness_multiuser_v5');
                 if (saved) {
                     const parsed = JSON.parse(saved);
-                    if (parsed.meals) this.state.today.meals = parsed.meals;
-                    if (parsed.workouts) this.state.today.workouts = parsed.workouts;
-                    if (typeof parsed.steps !== 'undefined') this.state.watches.apple.steps = parsed.steps;
-                    if (parsed.user) this.state.user = { ...this.state.user, ...parsed.user };
+                    if (parsed.profiles) this.state.profiles = parsed.profiles;
+                    if (parsed.activeProfileId) this.state.activeProfileId = parsed.activeProfileId;
                 }
             } catch (e) {}
         },
 
         saveState() {
             try {
-                localStorage.setItem('apple_fitness_state_v4', JSON.stringify({
-                    meals: this.state.today.meals,
-                    workouts: this.state.today.workouts,
-                    steps: this.state.watches.apple.steps,
-                    user: this.state.user
+                localStorage.setItem('apple_fitness_multiuser_v5', JSON.stringify({
+                    profiles: this.state.profiles,
+                    activeProfileId: this.state.activeProfileId
                 }));
             } catch (e) {}
         },
 
+        switchProfile(profileId) {
+            if (profileId === 'new_profile') {
+                const name = prompt('أدخل اسم المستخدم/الصديق الجديد:');
+                if (name && name.trim()) {
+                    const newId = 'user_' + Date.now();
+                    this.state.profiles[newId] = {
+                        id: newId,
+                        name: name.trim(),
+                        weight: 75, height: 175, age: 25, gender: 'male', goal: 'fat_loss',
+                        calorieGoal: 2200, proteinGoal: 150, carbsGoal: 220, fatsGoal: 70, stepsGoal: 10000,
+                        today: { meals: [], workouts: [] }, steps: 0, history: {}
+                    };
+                    this.state.activeProfileId = newId;
+                    this.renderProfileDropdown();
+                } else {
+                    document.getElementById('profileSelect').value = this.state.activeProfileId;
+                    return;
+                }
+            } else {
+                this.state.activeProfileId = profileId;
+            }
+            this.saveState();
+            this.updateUI();
+            alert(`تم الانتقال لبروفايل: ${this.getActiveProfile().name} ✅`);
+        },
+
+        renderProfileDropdown() {
+            const select = document.getElementById('profileSelect');
+            if (!select) return;
+            select.innerHTML = Object.values(this.state.profiles).map(p => `
+                <option value="${p.id}" ${p.id === this.state.activeProfileId ? 'selected' : ''}>👤 ${p.name}</option>
+            `).join('') + '<option value="new_profile">➕ إضافة بروفايل جديد...</option>';
+        },
+
         resetToday() {
-            if (confirm('هل انت متأكد من تصفير سجّلات اليوم والبدء من جديد؟')) {
-                this.state.today.meals = [];
-                this.state.today.workouts = [];
-                this.state.watches.apple.steps = 0;
+            const p = this.getActiveProfile();
+            if (confirm(`هل أنت متأكد من تصفير سجلات اليوم لـ (${p.name}) والبدء من جديد؟`)) {
+                p.today.meals = [];
+                p.today.workouts = [];
+                p.steps = 0;
                 this.saveState();
                 this.updateUI();
                 alert('تم تصفير سجّلات اليوم بنجاح! 🔄');
@@ -1325,22 +1408,24 @@ body {
         },
 
         loadDemoMeals() {
-            this.state.today.meals = [
+            const p = this.getActiveProfile();
+            p.today.meals = [
                 { id: 'm1', name: '🍳 3 بيضات مسلوقة + خبز بر', category: 'breakfast', calories: 380, protein: 24, carbs: 28, fats: 18 },
                 { id: 'm2', name: '🍗 صدر دجاج مشوي + رز أبيض', category: 'lunch', calories: 650, protein: 55, carbs: 70, fats: 12 }
             ];
-            this.state.watches.apple.steps = 4500;
+            p.steps = 4500;
             this.saveState();
             this.updateUI();
         },
 
         openCalcModal() {
+            const p = this.getActiveProfile();
             document.getElementById('calcModal')?.classList.remove('hidden');
-            document.getElementById('calcWeight').value = this.state.user.weight || 75;
-            document.getElementById('calcHeight').value = this.state.user.height || 175;
-            document.getElementById('calcAge').value = this.state.user.age || 25;
-            document.getElementById('calcGender').value = this.state.user.gender || 'male';
-            document.getElementById('calcGoal').value = this.state.user.goal || 'fat_loss';
+            document.getElementById('calcWeight').value = p.weight || 75;
+            document.getElementById('calcHeight').value = p.height || 175;
+            document.getElementById('calcAge').value = p.age || 25;
+            document.getElementById('calcGender').value = p.gender || 'male';
+            document.getElementById('calcGoal').value = p.goal || 'fat_loss';
             this.computeTDEEPreview();
         },
 
@@ -1356,7 +1441,6 @@ body {
             const goal = document.getElementById('calcGoal').value;
             const act = Number(document.getElementById('calcActivity').value) || 1.375;
 
-            // Mifflin-St Jeor
             let bmr = (10 * w) + (6.25 * h) - (5 * a) + (g === 'male' ? 5 : -161);
             let tdee = Math.round(bmr * act);
             
@@ -1364,7 +1448,6 @@ body {
             if (goal === 'fat_loss') targetCal = Math.round(tdee - 450);
             else if (goal === 'muscle_gain') targetCal = Math.round(tdee + 350);
 
-            // Protein: 2.0g per kg for muscle, 1.8g for loss
             let prot = Math.round(w * (goal === 'muscle_gain' ? 2.2 : 2.0));
             let fats = Math.round((targetCal * 0.25) / 9);
             let carbs = Math.round((targetCal - (prot * 4) - (fats * 9)) / 4);
@@ -1379,20 +1462,57 @@ body {
 
         handleCalcSubmit() {
             const res = this.computeTDEEPreview();
-            this.state.user.weight = res.w;
-            this.state.user.height = res.h;
-            this.state.user.age = res.a;
-            this.state.user.gender = res.g;
-            this.state.user.goal = res.goal;
-            this.state.user.calorieGoal = res.targetCal;
-            this.state.user.proteinGoal = res.prot;
-            this.state.user.carbsGoal = res.carbs;
-            this.state.user.fatsGoal = res.fats;
+            const p = this.getActiveProfile();
+            p.weight = res.w;
+            p.height = res.h;
+            p.age = res.a;
+            p.gender = res.g;
+            p.goal = res.goal;
+            p.calorieGoal = res.targetCal;
+            p.proteinGoal = res.prot;
+            p.carbsGoal = res.carbs;
+            p.fatsGoal = res.fats;
 
             this.saveState();
             this.closeCalcModal();
             this.updateUI();
-            alert('تم حساب وتحديث أهداف السعرات والماكروز بنجاح بناءً على وزنك وطولك! 🎯');
+            alert(`تم حفظ وتحديث أهداف البروفايل (${p.name}) بنجاح! 🎯`);
+        },
+
+        exportData() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.state.profiles));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `fitpulse_backup_${Date.now()}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+        },
+
+        importData() {
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = 'application/json';
+            fileInput.onchange = e => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = event => {
+                        try {
+                            const imported = JSON.parse(event.target.result);
+                            if (imported) {
+                                this.state.profiles = { ...this.state.profiles, ...imported };
+                                this.saveState();
+                                this.renderProfileDropdown();
+                                this.updateUI();
+                                alert('تم استيراد سجّلات البروفايل والبيانات بنجاح! 🎉');
+                            }
+                        } catch (err) { alert('خطأ في تنسيق ملف البيانات!'); }
+                    };
+                    reader.readAsText(file);
+                }
+            };
+            fileInput.click();
         },
 
         bindEvents() {
@@ -1403,12 +1523,17 @@ body {
                 });
             });
 
+            document.getElementById('profileSelect')?.addEventListener('change', (e) => this.switchProfile(e.target.value));
+
             document.getElementById('resetTodayBtn')?.addEventListener('click', () => this.resetToday());
             document.getElementById('loadDemoMealsBtn')?.addEventListener('click', () => this.loadDemoMeals());
 
             document.getElementById('openCalcBtn')?.addEventListener('click', () => this.openCalcModal());
             document.getElementById('closeCalcModal')?.addEventListener('click', () => this.closeCalcModal());
             document.getElementById('cancelCalcModal')?.addEventListener('click', () => this.closeCalcModal());
+
+            document.getElementById('exportDataBtn')?.addEventListener('click', () => this.exportData());
+            document.getElementById('importDataBtn')?.addEventListener('click', () => this.importData());
 
             ['calcWeight', 'calcHeight', 'calcAge', 'calcGender', 'calcGoal', 'calcActivity'].forEach(id => {
                 document.getElementById(id)?.addEventListener('input', () => this.computeTDEEPreview());
@@ -1447,7 +1572,6 @@ body {
 
             document.getElementById('aiInputSubmit')?.addEventListener('click', () => this.handleAiAnalysis());
             
-            // Send Chat Handlers for both tabs
             document.getElementById('sendChatBtn')?.addEventListener('click', () => this.handleChatSend('chatInputText', 'chatLogsArea'));
             document.getElementById('sendChatBtnFull')?.addEventListener('click', () => this.handleChatSend('chatInputTextFull', 'chatLogsAreaFull'));
 
@@ -1512,85 +1636,89 @@ body {
         },
 
         getTotals() {
+            const p = this.getActiveProfile();
             let eatenCal = 0, pGrams = 0, cGrams = 0, fGrams = 0;
-            (this.state.today.meals || []).forEach(m => {
+            (p.today.meals || []).forEach(m => {
                 eatenCal += Number(m.calories) || 0;
                 pGrams += Number(m.protein) || 0;
                 cGrams += Number(m.carbs) || 0;
                 fGrams += Number(m.fats) || 0;
             });
             let burnedCal = 0;
-            (this.state.today.workouts || []).forEach(w => { burnedCal += Number(w.calories) || 0; });
+            (p.today.workouts || []).forEach(w => { burnedCal += Number(w.calories) || 0; });
             const netCal = eatenCal - burnedCal;
-            const goalCal = this.state.user.calorieGoal;
-            return { eatenCal, burnedCal, netCal, goalCal, remCal: Math.max(0, goalCal - netCal), pGrams, cGrams, fGrams, totalSteps: this.state.watches.apple.steps };
+            const goalCal = p.calorieGoal || 2200;
+            return { eatenCal, burnedCal, netCal, goalCal, remCal: Math.max(0, goalCal - netCal), pGrams, cGrams, fGrams, totalSteps: p.steps || 0 };
         },
 
         updateUI() {
+            this.renderProfileDropdown();
+            const p = this.getActiveProfile();
             const totals = this.getTotals();
+
+            document.getElementById('dispProfileName').textContent = p.name;
             document.getElementById('dashNetCal').textContent = totals.remCal.toLocaleString();
             document.getElementById('dashEatenCal').textContent = totals.eatenCal.toLocaleString();
             document.getElementById('dashBurnedCal').textContent = totals.burnedCal.toLocaleString();
             document.getElementById('barCal').style.width = `${Math.min(100, (totals.eatenCal / totals.goalCal) * 100)}%`;
 
             document.getElementById('dashSteps').textContent = totals.totalSteps.toLocaleString();
-            document.getElementById('dashGoalSteps').textContent = this.state.user.stepsGoal.toLocaleString();
-            document.getElementById('barSteps').style.width = `${Math.min(100, (totals.totalSteps / this.state.user.stepsGoal) * 100)}%`;
+            document.getElementById('dashGoalSteps').textContent = (p.stepsGoal || 10000).toLocaleString();
+            document.getElementById('barSteps').style.width = `${Math.min(100, (totals.totalSteps / (p.stepsGoal || 10000)) * 100)}%`;
 
             document.getElementById('appleWatchStepsVal').textContent = totals.totalSteps.toLocaleString();
             document.getElementById('huaweiWatchStepsVal').textContent = totals.totalSteps.toLocaleString();
 
             document.getElementById('dashProt').textContent = totals.pGrams;
-            document.getElementById('dashGoalProt').textContent = this.state.user.proteinGoal;
-            document.getElementById('barProt').style.width = `${Math.min(100, (totals.pGrams / this.state.user.proteinGoal) * 100)}%`;
+            document.getElementById('dashGoalProt').textContent = p.proteinGoal || 150;
+            document.getElementById('barProt').style.width = `${Math.min(100, (totals.pGrams / (p.proteinGoal || 150)) * 100)}%`;
 
-            // Profile Card Header Display
-            const u = this.state.user;
-            document.getElementById('dispWeight').textContent = `${u.weight || 75} كجم`;
-            document.getElementById('dispHeight').textContent = `${u.height || 175} سم`;
+            document.getElementById('dispWeight').textContent = `${p.weight || 75} كجم`;
+            document.getElementById('dispHeight').textContent = `${p.height || 175} سم`;
             const goalNames = { fat_loss: '🔥 تنشيف وتخسيس', muscle_gain: '💪 تضخيم وعضلات', maintain: '⚖️ المحافظة' };
-            document.getElementById('dispGoal').textContent = goalNames[u.goal] || 'تخسيس وتنشيف';
-            document.getElementById('dispTargetCal').textContent = `${(u.calorieGoal || 2200).toLocaleString()} Kcal`;
-            document.getElementById('dispTargetProt').textContent = `${u.proteinGoal || 150}g`;
+            document.getElementById('dispGoal').textContent = goalNames[p.goal] || 'تخسيس وتنشيف';
+            document.getElementById('dispTargetCal').textContent = `${(p.calorieGoal || 2200).toLocaleString()} Kcal`;
+            document.getElementById('dispTargetProt').textContent = `${p.proteinGoal || 150}g`;
 
-            // Apple Concentric Rings Offset Math
             document.getElementById('ringMove').style.strokeDashoffset = 565 * (1 - Math.min(1, totals.eatenCal / totals.goalCal));
-            document.getElementById('ringExercise').style.strokeDashoffset = 440 * (1 - Math.min(1, totals.totalSteps / this.state.user.stepsGoal));
-            document.getElementById('ringStand').style.strokeDashoffset = 314 * (1 - Math.min(1, totals.pGrams / totals.goalCal));
+            document.getElementById('ringExercise').style.strokeDashoffset = 440 * (1 - Math.min(1, totals.totalSteps / (p.stepsGoal || 10000)));
+            document.getElementById('ringStand').style.strokeDashoffset = 314 * (1 - Math.min(1, totals.pGrams / (p.proteinGoal || 150)));
 
             document.getElementById('nutGoalVal').textContent = totals.goalCal.toLocaleString();
             document.getElementById('nutEatenVal').textContent = totals.eatenCal.toLocaleString();
             document.getElementById('nutBurnedVal').textContent = totals.burnedCal.toLocaleString();
             document.getElementById('nutRemVal').textContent = totals.remCal.toLocaleString();
 
-            const pPct = Math.round((totals.pGrams / this.state.user.proteinGoal) * 100);
-            const cPct = Math.round((totals.cGrams / this.state.user.carbsGoal) * 100);
-            const fPct = Math.round((totals.fGrams / this.state.user.fatsGoal) * 100);
+            const pPct = Math.round((totals.pGrams / (p.proteinGoal || 150)) * 100);
+            const cPct = Math.round((totals.cGrams / (p.carbsGoal || 220)) * 100);
+            const fPct = Math.round((totals.fGrams / (p.fatsGoal || 70)) * 100);
 
-            document.getElementById('nutPText').textContent = `${totals.pGrams}g / ${this.state.user.proteinGoal}g (${pPct}%)`;
+            document.getElementById('nutPText').textContent = `${totals.pGrams}g / ${p.proteinGoal || 150}g (${pPct}%)`;
             document.getElementById('nutPBar').style.width = `${Math.min(100, pPct)}%`;
 
-            document.getElementById('nutCText').textContent = `${totals.cGrams}g / ${this.state.user.carbsGoal}g (${cPct}%)`;
+            document.getElementById('nutCText').textContent = `${totals.cGrams}g / ${p.carbsGoal || 220}g (${cPct}%)`;
             document.getElementById('nutCBar').style.width = `${Math.min(100, cPct)}%`;
 
-            document.getElementById('nutFText').textContent = `${totals.fGrams}g / ${this.state.user.fatsGoal}g (${fPct}%)`;
+            document.getElementById('nutFText').textContent = `${totals.fGrams}g / ${p.fatsGoal || 70}g (${fPct}%)`;
             document.getElementById('nutFBar').style.width = `${Math.min(100, fPct)}%`;
 
             this.renderMeals();
             this.renderWorkouts();
+            this.renderHistory();
             this.updateWatchUI();
         },
 
         renderMeals() {
+            const p = this.getActiveProfile();
             const dashList = document.getElementById('dashMealsList');
             const categories = { breakfast: [], lunch: [], dinner: [], snacks: [] };
 
-            (this.state.today.meals || []).forEach(m => {
+            (p.today.meals || []).forEach(m => {
                 if (categories[m.category]) categories[m.category].push(m);
             });
 
             if (dashList) {
-                dashList.innerHTML = (this.state.today.meals || []).map(m => `
+                dashList.innerHTML = (p.today.meals || []).map(m => `
                     <div class="ios-list-item">
                         <div class="item-left-info">
                             <div class="item-icon-box">🍱</div>
@@ -1624,16 +1752,18 @@ body {
         },
 
         deleteMeal(id) {
-            this.state.today.meals = this.state.today.meals.filter(m => m.id !== id);
+            const p = this.getActiveProfile();
+            p.today.meals = p.today.meals.filter(m => m.id !== id);
             this.saveState();
             this.updateUI();
         },
 
         renderWorkouts() {
+            const p = this.getActiveProfile();
             const dashList = document.getElementById('dashWorkoutsList');
             const fullList = document.getElementById('fullWorkoutsHistoryList');
 
-            const html = (this.state.today.workouts || []).map(w => `
+            const html = (p.today.workouts || []).map(w => `
                 <div class="ios-list-item">
                     <div class="item-left-info">
                         <div class="item-icon-box" style="color:var(--ring-exercise)">🏃‍♂️</div>
@@ -1654,9 +1784,31 @@ body {
         },
 
         deleteWorkout(id) {
-            this.state.today.workouts = this.state.today.workouts.filter(w => w.id !== id);
+            const p = this.getActiveProfile();
+            p.today.workouts = p.today.workouts.filter(w => w.id !== id);
             this.saveState();
             this.updateUI();
+        },
+
+        renderHistory() {
+            const historyList = document.getElementById('historyDaysList');
+            if (!historyList) return;
+            const p = this.getActiveProfile();
+            const totals = this.getTotals();
+            const todayStr = new Date().toLocaleDateString('ar-SA');
+
+            historyList.innerHTML = `
+                <div class="ios-list-item" style="border-color:var(--ring-stand)">
+                    <div class="item-left-info">
+                        <div class="item-icon-box" style="color:var(--ring-stand)">📌</div>
+                        <div class="item-details">
+                            <h4>سجل اليوم التراكمي (${todayStr})</h4>
+                            <p>الوجبات: ${(p.today.meals || []).length} | السعرات: ${totals.eatenCal} kcal | البروتين: ${totals.pGrams}g</p>
+                        </div>
+                    </div>
+                    <span class="item-value" style="color:var(--ring-exercise)">نشط الآن</span>
+                </div>
+            `;
         },
 
         openMealModal(cat = 'breakfast') {
@@ -1669,6 +1821,7 @@ body {
         },
 
         handleMealSubmit() {
+            const p = this.getActiveProfile();
             const name = document.getElementById('modalName').value;
             const category = document.getElementById('modalCat').value;
             const calories = Number(document.getElementById('modalCal').value);
@@ -1676,7 +1829,7 @@ body {
             const carbs = Number(document.getElementById('modalC').value);
             const fats = Number(document.getElementById('modalF').value);
 
-            this.state.today.meals.push({ id: 'm_' + Date.now(), name, category, calories, protein, carbs, fats });
+            p.today.meals.push({ id: 'm_' + Date.now(), name, category, calories, protein, carbs, fats });
             this.saveState();
             this.closeMealModal();
             this.updateUI();
@@ -1724,8 +1877,8 @@ body {
             }
 
             setTimeout(() => {
-                const userWeight = this.state.user.weight || 75;
-                const userGoal = this.state.user.goal || 'fat_loss';
+                const p = this.getActiveProfile();
+                const userWeight = p.weight || 75;
                 let resp = '';
 
                 const isProteinCalc = text.includes('احتياج') || text.includes('كم بروتين') || text.includes('احتياجي') || text.includes('احسب بروتين') || text.includes('كم احتاج بروتين');
@@ -1737,33 +1890,30 @@ body {
                     const recMin = Math.round(userWeight * 1.8);
                     const recMax = Math.round(userWeight * 2.2);
                     resp = `
-                        <p>🥩 <strong>حساب احتياجك اليومي من البروتين الذكي:</strong></p>
-                        <p>بناءً على وزنك الحالي المعتمد (<strong>${userWeight} كجم</strong>) وبناءً على التوصية الرياضية لبناء العضلات والتنشيف (1.8g - 2.2g لكل كجم):</p>
+                        <p>🥩 <strong>حساب احتياجك اليومي للبروفايل الحالي (${p.name}):</strong></p>
+                        <p>بناءً على وزنك المعتمد (<strong>${userWeight} كجم</strong>):</p>
                         <ul style="margin-top:6px; margin-right:18px; line-height:1.6">
                             <li>🔥 <strong>الاحتياج اليومي المطلوب:</strong> <span style="color:var(--ring-stand); font-size:1.1rem; font-weight:800">${recMin}g إلى ${recMax}g جرام بروتين يومياً</span></li>
-                            <li>💡 <strong>التوزيع التقديري:</strong> مقسمة على 3 إلى 4 وجبات (حوالي 35g - 45g في كل وجبة).</li>
                         </ul>
                         <div style="margin-top:10px">
-                            <button class="ios-primary-btn" style="padding:6px 14px; font-size:0.78rem; width:auto" onclick="FitPulseApp.openCalcModal()">⚖️ تعديل الوزن والطول وحساب السعرات الكاملة</button>
+                            <button class="ios-primary-btn" style="padding:6px 14px; font-size:0.78rem; width:auto" onclick="FitPulseApp.openCalcModal()">⚖️ تعديل بيانات الوزن والسعرات</button>
                         </div>
                     `;
                 } else if (isFatLoss) {
                     resp = `
-                        <p>🔥 <strong>دليل Gemini AI للتخسيس والتنشيف النظيف:</strong></p>
+                        <p>🔥 <strong>دليل التنشيف والتخسيس لـ (${p.name}):</strong></p>
                         <ol style="margin-top:6px; margin-right:18px; line-height:1.6">
-                            <li><strong>عجز السعرات:</strong> تناول سعرات أقل بـ 400 - 500 kcal من احتياجك اليومي.</li>
-                            <li><strong>رفع البروتين:</strong> المحافظة على (2.0g بروتين لكل كجم) لحماية الكتلة العضلية من الهدم.</li>
-                            <li><strong>التمارين:</strong> الاستمرار بتمارين المقاومة (3-5 أيام) + 8000 إلى 10,000 خطوة يومياً.</li>
+                            <li><strong>عجز السعرات:</strong> تناول سعرات أقل بـ 400 - 500 kcal.</li>
+                            <li><strong>البروتين:</strong> المحافظة على (2.0g لكل كجم).</li>
                         </ol>
                     `;
                 } else if (isWorkout) {
                     resp = `
-                        <p>💪 <strong>برنامج تمارين المقاومة والبناء العضلي (4 أيام):</strong></p>
+                        <p>💪 <strong>برنامج تمارين المقاومة للبناء العضلي:</strong></p>
                         <ul style="margin-top:6px; margin-right:18px; line-height:1.6">
-                            <li><strong>اليوم 1 (سحب):</strong> ظهر + بايسبس + أكتاف خلفية (4 تمارين 3 الجولات)</li>
-                            <li><strong>اليوم 2 (دفع):</strong> صدر + أكتاف أمامي/جانبي + ترايسبس</li>
-                            <li><strong>اليوم 3 (أرجل):</strong> سكوات + طعن + سمانة + بطن</li>
-                            <li><strong>اليوم 4 (علوي شامل):</strong> تمارين مركة للكتلة العضلية</li>
+                            <li><strong>اليوم 1:</strong> ظهر + بايسبس</li>
+                            <li><strong>اليوم 2:</strong> صدر + أكتاف + ترايسبس</li>
+                            <li><strong>اليوم 3:</strong> أرجل + بطن</li>
                         </ul>
                     `;
                 } else if (isFoodItem) {
@@ -1776,17 +1926,11 @@ body {
                             <li>🌾 الكاربوهيدرات: ${parsed.carbs}g</li>
                             <li>🥑 الدهون: ${parsed.fats}g</li>
                         </ul>
-                        <button class="ios-primary-btn" style="padding:6px 14px; font-size:0.78rem; margin-top:8px; width:auto" onclick="FitPulseApp.logParsedMeal('${parsed.name}', ${parsed.calories}, ${parsed.protein}, ${parsed.carbs}, ${parsed.fats})">+ حفظ بالجدول تلقائياً</button>
+                        <button class="ios-primary-btn" style="padding:6px 14px; font-size:0.78rem; margin-top:8px; width:auto" onclick="FitPulseApp.logParsedMeal('${parsed.name}', ${parsed.calories}, ${parsed.protein}, ${parsed.carbs}, ${parsed.fats})">+ حفظ بجدول (${p.name})</button>
                     `;
                 } else {
                     resp = `
-                        <p>✨ <strong>Gemini AI:</strong> مرحباً بك! يمكنني مساعدتك في:</p>
-                        <ul style="margin-top:6px; margin-right:18px; line-height:1.6">
-                            <li>🥩 حساب احتياجك اليومي من البروتين حسب وزنك وطولك.</li>
-                            <li>🍱 تحليل الوجبة وحساب السعرات والماكروز تلقائياً.</li>
-                            <li>💪 تصميم خطة تمارين رياضة للتنشيف أو التضخيم.</li>
-                        </ul>
-                        <p style="margin-top:6px; font-size:0.8rem; color:var(--ios-text-sub)">جرب كتابة: "وزني 75 كم أحتاج بروتين" أو "أكلت 200 جرام صدر دجاج".</p>
+                        <p>✨ <strong>Gemini AI:</strong> مرحباً ${p.name}! يمكنني مساعدتك في حساب احتياج البروتين وتصميم الجداول وتحليل الوجبات.</p>
                     `;
                 }
 
@@ -1809,24 +1953,24 @@ body {
             if (text.includes('رز') || text.includes('أرز')) { calories += 180; carbs += 38; }
             if (text.includes('بيض')) { calories = 240; protein = 18; carbs = 4; fats = 14; }
             if (text.includes('شاورما')) { calories = 550; protein = 32; carbs = 45; fats = 22; }
-            if (text.includes('تونة')) { calories = 210; protein = 32; carbs = 2; fats = 8; }
-            if (text.includes('واي') || text.includes('شيك')) { calories = 140; protein = 26; carbs = 3; fats = 2; }
             return { name: text.length > 30 ? text.substring(0, 30) + '...' : text, calories, protein, carbs, fats };
         },
 
         logParsedMeal(name, cal, p, c, f) {
-            this.state.today.meals.push({ id: 'm_ai_' + Date.now(), name: `✨ ${name}`, category: 'lunch', calories: cal, protein: p, carbs: c, fats: f });
+            const prof = this.getActiveProfile();
+            prof.today.meals.push({ id: 'm_ai_' + Date.now(), name: `✨ ${name}`, category: 'lunch', calories: cal, protein: p, carbs: c, fats: f });
             this.saveState();
             this.updateUI();
-            alert('تم إضافة الوجبة لجدول اليوم بنجاح!');
+            alert(`تم إضافة الوجبة لجدول (${prof.name}) بنجاح!`);
         },
 
         handleManualWorkoutSubmit() {
+            const p = this.getActiveProfile();
             const name = document.getElementById('manualWName').value;
             const duration = Number(document.getElementById('manualWDuration').value);
             const calories = Number(document.getElementById('manualWCalories').value);
 
-            this.state.today.workouts.push({ id: 'w_' + Date.now(), name, duration, calories, source: 'تسجيل يدوي' });
+            p.today.workouts.push({ id: 'w_' + Date.now(), name, duration, calories, source: 'تسجيل يدوي' });
             this.saveState();
             this.updateUI();
             document.getElementById('manualWorkoutForm').reset();
@@ -1859,10 +2003,11 @@ body {
                 if (stopBtn) stopBtn.classList.add('hidden');
 
                 if (active.seconds > 3) {
-                    this.state.today.workouts.push({ id: 'w_live_' + Date.now(), name: '🏃‍♂️ تمرين مباشر Fitness+ Live', duration: Math.max(1, Math.round(active.seconds/60)), calories: active.burnedCalories, source: 'Apple Watch' });
+                    const p = this.getActiveProfile();
+                    p.today.workouts.push({ id: 'w_live_' + Date.now(), name: '🏃‍♂️ تمرين مباشر Fitness+ Live', duration: Math.max(1, Math.round(active.seconds/60)), calories: active.burnedCalories, source: 'Apple Watch' });
                     this.saveState();
                     this.updateUI();
-                    alert(`تم إنهاء التمرين وحفظ حرق ${active.burnedCalories} سعرة!`);
+                    alert(`تم إنهاء التمرين وحفظ حرق ${active.burnedCalories} سعرة لـ (${p.name})!`);
                 }
             }
         },
@@ -1887,10 +2032,11 @@ body {
         scanWatches() {
             this.logSync('APPLE HEALTHKIT: SCANNING WATCHES...');
             setTimeout(() => {
-                this.state.watches.apple.steps += 350;
+                const p = this.getActiveProfile();
+                p.steps += 350;
                 this.saveState();
                 this.updateUI();
-                this.logSync('APPLE WATCH & HUAWEI WATCH SYNCED (+350 Steps)');
+                this.logSync(`APPLE WATCH & HUAWEI WATCH SYNCED (+350 Steps for ${p.name})`);
             }, 600);
         },
 
