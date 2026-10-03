@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#000000">
-    <title>Fitness+ | الصحة واللياقة 2026</title>
+    <title>Fitness+ | الصحة واللياقة والذكاء الاصطناعي 2026</title>
     
     <!-- Google Fonts: Readex Pro & SF Pro style Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -155,6 +155,23 @@ body {
 @keyframes blink {
     0% { opacity: 0.3; }
     100% { opacity: 1; }
+}
+
+.ios-btn-calc {
+    background: rgba(10, 132, 255, 0.15);
+    border: 1px solid rgba(10, 132, 255, 0.35);
+    border-radius: var(--radius-ios-pill);
+    color: var(--ring-stand);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ios-btn-calc:hover {
+    background: var(--ring-stand);
+    color: #fff;
 }
 
 .ios-btn-reset {
@@ -406,7 +423,7 @@ body {
     background: rgba(0, 0, 0, 0.4);
     border: 1px solid var(--ios-glass-border);
     border-radius: 20px;
-    height: 280px;
+    height: 300px;
     padding: 16px;
     overflow-y: auto;
     display: flex;
@@ -522,6 +539,8 @@ body {
     max-width: 600px;
     padding: 24px 24px 36px;
     box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8);
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .sheet-handle {
@@ -649,6 +668,7 @@ body {
                     <div class="pulse-dot"></div>
                     <span id="sidebarBpm">74 BPM</span>
                 </div>
+                <button class="ios-btn-calc" id="openCalcBtn">⚖️ حاسبة الوزن والطول</button>
                 <button class="ios-btn-reset" id="resetTodayBtn">🔄 تصفير اليوم</button>
                 <button class="ios-add-btn" id="quickAddMealBtn">+ وجبة</button>
             </div>
@@ -723,6 +743,36 @@ body {
                     </div>
                 </div>
 
+                <!-- BODY & NUTRITION PROFILE CARD -->
+                <div class="ios-card col-12" style="background:rgba(10, 132, 255, 0.08); border-color:rgba(10, 132, 255, 0.25)">
+                    <div class="card-title">
+                        <span>⚖️ بيانات جسمك الحالية (بيانات الحساب)</span>
+                        <button class="ios-btn-calc" onclick="FitPulseApp.openCalcModal()">⚙️ تعديل الوزن والطول والهدف</button>
+                    </div>
+                    <div style="display:flex; justify-content:space-around; flex-wrap:wrap; gap:14px; text-align:center; padding:6px 0">
+                        <div>
+                            <span style="font-size:0.75rem; color:var(--ios-text-sub)">الوزن</span>
+                            <h3 style="font-size:1.4rem; color:var(--ring-stand)" id="dispWeight">75 كجم</h3>
+                        </div>
+                        <div>
+                            <span style="font-size:0.75rem; color:var(--ios-text-sub)">الطول</span>
+                            <h3 style="font-size:1.4rem; color:var(--ring-exercise)" id="dispHeight">175 سم</h3>
+                        </div>
+                        <div>
+                            <span style="font-size:0.75rem; color:var(--ios-text-sub)">هدف اللياقة</span>
+                            <h3 style="font-size:1.4rem; color:var(--ring-move)" id="dispGoal">تنشيف وتخسيس</h3>
+                        </div>
+                        <div>
+                            <span style="font-size:0.75rem; color:var(--ios-text-sub)">السعرات المطلوبة</span>
+                            <h3 style="font-size:1.4rem; color:var(--ring-amber)" id="dispTargetCal">2,200 Kcal</h3>
+                        </div>
+                        <div>
+                            <span style="font-size:0.75rem; color:var(--ios-text-sub)">احتياجك من البروتين</span>
+                            <h3 style="font-size:1.4rem; color:var(--ring-purple)" id="dispTargetProt">150g</h3>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- MACRO FUEL BREAKDOWN -->
                 <div class="ios-card col-6">
                     <div class="card-title">
@@ -764,19 +814,20 @@ body {
                     </div>
                     
                     <div class="chip-row">
-                        <button class="chip-btn" data-prompt="احسب لي وجبة 200 جرام دجاج مع رز">🍗 تحليل وجبة دجاج ورز</button>
-                        <button class="chip-btn" data-prompt="صمم لي جدول تمارين للمقاومة">🏋️‍♂️ جدول تمارين للمقاومة</button>
-                        <button class="chip-btn" data-prompt="كيف أزيد نسبة البروتين اليوم؟">🥩 نصائح زيادة البروتين</button>
+                        <button class="chip-btn" data-prompt="احسب لي احتياجي اليومي من البروتين حسب وزني">🥩 احتياجي اليومي من البروتين</button>
+                        <button class="chip-btn" data-prompt="أكلت 200 جرام صدر دجاج مع 150 جرام رز">🍗 تحليل وجبة دجاج ورز</button>
+                        <button class="chip-btn" data-prompt="صمم لي جدول تمارين مقاومة للتضخيم">🏋️‍♂️ جدول تمارين للتضخيم</button>
+                        <button class="chip-btn" data-prompt="كيف أخسس 5 كيلو دهون بدون خسارة عضل؟">🔥 طريقة التخسيس والتنشيف</button>
                     </div>
 
                     <div class="chat-box-container" id="chatLogsArea">
                         <div class="chat-bubble-ai">
-                            أهلاً بك! أنا مساعدك التغذوي والرياضي الذكي المربوط بتطبيق Fitness+. اكتب وجبتك أو سؤالك وسأجيبك فوراً!
+                            أهلاً بك! أنا مساعد Gemini AI الذكي. اكتب سؤالك عن البروتين، السعرات، أو اكتب وجبتك لتحليلها فوراً!
                         </div>
                     </div>
 
                     <div class="chat-input-bar">
-                        <input type="text" id="chatInputText" placeholder="اكتب وجبتك (مثال: 3 بيضات مسلوقة) أو أي سؤال رياضي...">
+                        <input type="text" id="chatInputText" placeholder="اكتب سؤالك (مثال: احسب لي احتياجي من البروتين أو 3 بيضات)...">
                         <button id="sendChatBtn">إرسال ✨</button>
                     </div>
                 </div>
@@ -871,24 +922,24 @@ body {
             <div class="ios-card col-12" style="padding:24px">
                 <div class="card-title">
                     <h2>🤖 مركز استشارات الذكاء الاصطناعي Gemini AI</h2>
+                    <button class="ios-btn-calc" onclick="FitPulseApp.openCalcModal()">⚖️ حاسبة الوزن والتنشيف</button>
                 </div>
-                <p style="font-size:0.85rem; color:var(--ios-text-sub); margin-bottom:12px">اسأل جيميناي أي سؤال عن التغذية، السعرات، أو تصميم جدول تمارين رياضي مخصص:</p>
                 
                 <div class="chip-row">
+                    <button class="chip-btn" data-prompt="احسب لي احتياجي اليومي من البروتين حسب وزني">🥩 احتياجي اليومي من البروتين</button>
                     <button class="chip-btn" data-prompt="صمم لي برنامج تضخيم عضلات للمبتدئين">💪 برنامج تضخيم للمبتدئين</button>
-                    <button class="chip-btn" data-prompt="احسب لي احتياجي اليومي من البروتين">🥩 حساب البروتين اليومي</button>
-                    <button class="chip-btn" data-prompt="كيف أتخلص من الدهون العنيدة؟">🔥 التخلص من الدهون</button>
+                    <button class="chip-btn" data-prompt="كيف أتخلص من الدهون العنيدة وتنشيف الجسم؟">🔥 التخلص من الدهون</button>
                     <button class="chip-btn" data-prompt="أعطني قائمة بأهم الأطعمة الغنية بالبروتين">🥗 قائمة أطعمة للبروتين</button>
                 </div>
 
-                <div class="chat-box-container" style="height:380px" id="chatLogsAreaFull">
+                <div class="chat-box-container" style="height:360px" id="chatLogsAreaFull">
                     <div class="chat-bubble-ai">
-                        مرحباً بك! أنا مساعد Gemini AI الذكي. يمكنك سؤالي عن نصائح التغذية، جداول التدريب، أو التضخيم والتنشيف!
+                        مرحباً بك! أنا مساعد Gemini AI الذكي. اسألني عن احتياجك اليومي من البروتين والسعرات بناءً على وزنك، أو اسألني عن التغذية والتمارين!
                     </div>
                 </div>
 
                 <div class="chat-input-bar" style="margin-top:16px">
-                    <input type="text" id="chatInputTextFull" placeholder="اكتب سؤالك لجيميناي هنا (مثال: احسب لي سعرات شاورما دجاج)...">
+                    <input type="text" id="chatInputTextFull" placeholder="اكتب سؤالك لجيميناي (مثال: وزني 75 كجم كم بروتين أحتاج؟)...">
                     <button id="sendChatBtnFull">إرسال ✨</button>
                 </div>
             </div>
@@ -1025,6 +1076,82 @@ body {
     </main>
 
     <!-- ==========================================================================
+         BODY METRICS & TDEE CALCULATOR MODAL
+         ========================================================================== -->
+    <div class="modal-overlay hidden" id="calcModal">
+        <div class="modal-sheet">
+            <div class="sheet-handle"></div>
+            <div class="card-title" style="margin-bottom:16px">
+                <h3>⚖️ حاسبة الوزن والسعرات والماكروز الشاملة</h3>
+                <button style="border:none; background:none; color:var(--ios-text-sub); font-size:1.5rem; cursor:pointer" id="closeCalcModal">&times;</button>
+            </div>
+            <p style="font-size:0.82rem; color:var(--ios-text-sub); margin-bottom:16px">أدخل وزنك وطولك وهدفك لحساب احتياجك الدقيق من السعرات والبروتين والكارب والدهون تلقائياً:</p>
+
+            <form id="calcForm">
+                <div class="form-row-ios">
+                    <div class="form-group-ios">
+                        <label>الوزن الحالي (كجم):</label>
+                        <input type="number" id="calcWeight" placeholder="75" value="75" required>
+                    </div>
+                    <div class="form-group-ios">
+                        <label>الطول (سم):</label>
+                        <input type="number" id="calcHeight" placeholder="175" value="175" required>
+                    </div>
+                </div>
+
+                <div class="form-row-ios">
+                    <div class="form-group-ios">
+                        <label>العمر:</label>
+                        <input type="number" id="calcAge" placeholder="25" value="25" required>
+                    </div>
+                    <div class="form-group-ios">
+                        <label>الجنس:</label>
+                        <select id="calcGender">
+                            <option value="male">ذكر</option>
+                            <option value="female">أنثى</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group-ios">
+                    <label>الهدف الرياضي:</label>
+                    <select id="calcGoal">
+                        <option value="fat_loss">🔥 تنشيف وتخسيس (Fat Loss / Deficit)</option>
+                        <option value="muscle_gain">💪 تضخيم وبناء عضلات (Muscle Gain / Surplus)</option>
+                        <option value="maintain">⚖️ المحافظة على الوزن والحياكة الحالية (Maintain)</option>
+                    </select>
+                </div>
+
+                <div class="form-group-ios">
+                    <label>مستوى النشاط اليومي:</label>
+                    <select id="calcActivity">
+                        <option value="1.2">خامل (بدون تمارين / عمل مكتبي)</option>
+                        <option value="1.375" selected>نشاط متوسط (تمارين 3 - 4 أيام أسبوعياً)</option>
+                        <option value="1.55">نشط جداً (تمارين مكثفة 5 - 6 أيام أسبوعياً)</option>
+                    </select>
+                </div>
+
+                <div style="background:rgba(10,132,255,0.1); border:1px solid rgba(10,132,255,0.3); border-radius:16px; padding:14px; margin:16px 0">
+                    <div style="font-size:0.8rem; color:var(--ring-stand); font-weight:700">نتائج التقدير العلمي:</div>
+                    <div style="display:flex; justify-content:space-between; margin-top:8px; font-size:0.85rem">
+                        <span>السعرات المستهدفة: <strong style="color:#fff" id="resCal">2,200 kcal</strong></span>
+                        <span>البروتين: <strong style="color:var(--ring-stand)" id="resProt">150g</strong></span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; margin-top:6px; font-size:0.85rem">
+                        <span>الكاربوهيدرات: <strong style="color:var(--ring-amber)" id="resCarbs">220g</strong></span>
+                        <span>الدهون: <strong style="color:var(--ring-purple)" id="resFats">70g</strong></span>
+                    </div>
+                </div>
+
+                <div style="display:flex; gap:10px">
+                    <button type="button" class="ios-secondary-btn" id="cancelCalcModal" style="flex:1">إلغاء</button>
+                    <button type="submit" class="ios-primary-btn" style="flex:2">حفظ وتحديث الأهداف تلقائياً ✅</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
          MEAL LOGGING SHEET MODAL
          ========================================================================== -->
     <div class="modal-overlay hidden" id="addMealModal">
@@ -1130,7 +1257,18 @@ body {
     const FitPulseApp = {
         state: {
             currentTab: 'dashboard',
-            user: { calorieGoal: 2200, proteinGoal: 160, carbsGoal: 220, fatsGoal: 70, stepsGoal: 10000 },
+            user: { 
+                weight: 75, 
+                height: 175, 
+                age: 25, 
+                gender: 'male', 
+                goal: 'fat_loss',
+                calorieGoal: 2200, 
+                proteinGoal: 150, 
+                carbsGoal: 220, 
+                fatsGoal: 70, 
+                stepsGoal: 10000 
+            },
             watches: {
                 apple: { connected: true, heartRate: 74, steps: 0, calories: 0 },
                 huawei: { connected: true, heartRate: 72, steps: 0 }
@@ -1153,22 +1291,24 @@ body {
 
         loadState() {
             try {
-                const saved = localStorage.getItem('apple_fitness_state_v3');
+                const saved = localStorage.getItem('apple_fitness_state_v4');
                 if (saved) {
                     const parsed = JSON.parse(saved);
                     if (parsed.meals) this.state.today.meals = parsed.meals;
                     if (parsed.workouts) this.state.today.workouts = parsed.workouts;
                     if (typeof parsed.steps !== 'undefined') this.state.watches.apple.steps = parsed.steps;
+                    if (parsed.user) this.state.user = { ...this.state.user, ...parsed.user };
                 }
             } catch (e) {}
         },
 
         saveState() {
             try {
-                localStorage.setItem('apple_fitness_state_v3', JSON.stringify({
+                localStorage.setItem('apple_fitness_state_v4', JSON.stringify({
                     meals: this.state.today.meals,
                     workouts: this.state.today.workouts,
-                    steps: this.state.watches.apple.steps
+                    steps: this.state.watches.apple.steps,
+                    user: this.state.user
                 }));
             } catch (e) {}
         },
@@ -1194,6 +1334,67 @@ body {
             this.updateUI();
         },
 
+        openCalcModal() {
+            document.getElementById('calcModal')?.classList.remove('hidden');
+            document.getElementById('calcWeight').value = this.state.user.weight || 75;
+            document.getElementById('calcHeight').value = this.state.user.height || 175;
+            document.getElementById('calcAge').value = this.state.user.age || 25;
+            document.getElementById('calcGender').value = this.state.user.gender || 'male';
+            document.getElementById('calcGoal').value = this.state.user.goal || 'fat_loss';
+            this.computeTDEEPreview();
+        },
+
+        closeCalcModal() {
+            document.getElementById('calcModal')?.classList.add('hidden');
+        },
+
+        computeTDEEPreview() {
+            const w = Number(document.getElementById('calcWeight').value) || 75;
+            const h = Number(document.getElementById('calcHeight').value) || 175;
+            const a = Number(document.getElementById('calcAge').value) || 25;
+            const g = document.getElementById('calcGender').value;
+            const goal = document.getElementById('calcGoal').value;
+            const act = Number(document.getElementById('calcActivity').value) || 1.375;
+
+            // Mifflin-St Jeor
+            let bmr = (10 * w) + (6.25 * h) - (5 * a) + (g === 'male' ? 5 : -161);
+            let tdee = Math.round(bmr * act);
+            
+            let targetCal = tdee;
+            if (goal === 'fat_loss') targetCal = Math.round(tdee - 450);
+            else if (goal === 'muscle_gain') targetCal = Math.round(tdee + 350);
+
+            // Protein: 2.0g per kg for muscle, 1.8g for loss
+            let prot = Math.round(w * (goal === 'muscle_gain' ? 2.2 : 2.0));
+            let fats = Math.round((targetCal * 0.25) / 9);
+            let carbs = Math.round((targetCal - (prot * 4) - (fats * 9)) / 4);
+
+            document.getElementById('resCal').textContent = `${targetCal.toLocaleString()} kcal`;
+            document.getElementById('resProt').textContent = `${prot}g`;
+            document.getElementById('resCarbs').textContent = `${carbs}g`;
+            document.getElementById('resFats').textContent = `${fats}g`;
+
+            return { w, h, a, g, goal, targetCal, prot, carbs, fats };
+        },
+
+        handleCalcSubmit() {
+            const res = this.computeTDEEPreview();
+            this.state.user.weight = res.w;
+            this.state.user.height = res.h;
+            this.state.user.age = res.a;
+            this.state.user.gender = res.g;
+            this.state.user.goal = res.goal;
+            this.state.user.calorieGoal = res.targetCal;
+            this.state.user.proteinGoal = res.prot;
+            this.state.user.carbsGoal = res.carbs;
+            this.state.user.fatsGoal = res.fats;
+
+            this.saveState();
+            this.closeCalcModal();
+            this.updateUI();
+            alert('تم حساب وتحديث أهداف السعرات والماكروز بنجاح بناءً على وزنك وطولك! 🎯');
+        },
+
         bindEvents() {
             document.querySelectorAll('[data-tab-jump]').forEach(btn => {
                 btn.addEventListener('click', () => {
@@ -1204,6 +1405,20 @@ body {
 
             document.getElementById('resetTodayBtn')?.addEventListener('click', () => this.resetToday());
             document.getElementById('loadDemoMealsBtn')?.addEventListener('click', () => this.loadDemoMeals());
+
+            document.getElementById('openCalcBtn')?.addEventListener('click', () => this.openCalcModal());
+            document.getElementById('closeCalcModal')?.addEventListener('click', () => this.closeCalcModal());
+            document.getElementById('cancelCalcModal')?.addEventListener('click', () => this.closeCalcModal());
+
+            ['calcWeight', 'calcHeight', 'calcAge', 'calcGender', 'calcGoal', 'calcActivity'].forEach(id => {
+                document.getElementById(id)?.addEventListener('input', () => this.computeTDEEPreview());
+                document.getElementById(id)?.addEventListener('change', () => this.computeTDEEPreview());
+            });
+
+            document.getElementById('calcForm')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this.handleCalcSubmit();
+            });
 
             document.getElementById('openMealBtn')?.addEventListener('click', () => this.openMealModal());
             document.getElementById('quickAddMealBtn')?.addEventListener('click', () => this.openMealModal());
@@ -1329,10 +1544,19 @@ body {
             document.getElementById('dashGoalProt').textContent = this.state.user.proteinGoal;
             document.getElementById('barProt').style.width = `${Math.min(100, (totals.pGrams / this.state.user.proteinGoal) * 100)}%`;
 
+            // Profile Card Header Display
+            const u = this.state.user;
+            document.getElementById('dispWeight').textContent = `${u.weight || 75} كجم`;
+            document.getElementById('dispHeight').textContent = `${u.height || 175} سم`;
+            const goalNames = { fat_loss: '🔥 تنشيف وتخسيس', muscle_gain: '💪 تضخيم وعضلات', maintain: '⚖️ المحافظة' };
+            document.getElementById('dispGoal').textContent = goalNames[u.goal] || 'تخسيس وتنشيف';
+            document.getElementById('dispTargetCal').textContent = `${(u.calorieGoal || 2200).toLocaleString()} Kcal`;
+            document.getElementById('dispTargetProt').textContent = `${u.proteinGoal || 150}g`;
+
             // Apple Concentric Rings Offset Math
             document.getElementById('ringMove').style.strokeDashoffset = 565 * (1 - Math.min(1, totals.eatenCal / totals.goalCal));
             document.getElementById('ringExercise').style.strokeDashoffset = 440 * (1 - Math.min(1, totals.totalSteps / this.state.user.stepsGoal));
-            document.getElementById('ringStand').style.strokeDashoffset = 314 * (1 - Math.min(1, totals.pGrams / this.state.user.proteinGoal));
+            document.getElementById('ringStand').style.strokeDashoffset = 314 * (1 - Math.min(1, totals.pGrams / totals.goalCal));
 
             document.getElementById('nutGoalVal').textContent = totals.goalCal.toLocaleString();
             document.getElementById('nutEatenVal').textContent = totals.eatenCal.toLocaleString();
@@ -1492,7 +1716,6 @@ body {
             input.value = '';
             if (box) box.scrollTop = box.scrollHeight;
 
-            // Also mirror to other box if present
             const otherBoxId = boxId === 'chatLogsArea' ? 'chatLogsAreaFull' : 'chatLogsArea';
             const otherBox = document.getElementById(otherBoxId);
             if (otherBox) {
@@ -1501,32 +1724,50 @@ body {
             }
 
             setTimeout(() => {
-                const parsed = this.parseMeal(text);
+                const userWeight = this.state.user.weight || 75;
+                const userGoal = this.state.user.goal || 'fat_loss';
                 let resp = '';
 
-                if (text.includes('برنامج') || text.includes('جدول') || text.includes('مقاومة') || text.includes('تضخيم')) {
+                const isProteinCalc = text.includes('احتياج') || text.includes('كم بروتين') || text.includes('احتياجي') || text.includes('احسب بروتين') || text.includes('كم احتاج بروتين');
+                const isFatLoss = text.includes('تخسيس') || text.includes('تنشيف') || text.includes('دهون') || text.includes('انزل وزني');
+                const isWorkout = text.includes('برنامج') || text.includes('جدول') || text.includes('مقاومة') || text.includes('تمرين') || text.includes('تضخيم عضل');
+                const isFoodItem = text.includes('أكلت') || text.includes('وجبة') || text.includes('دجاج') || text.includes('لحم') || text.includes('رز') || text.includes('أرز') || text.includes('بيض') || text.includes('شاورما') || text.includes('تونة') || text.includes('بروتين واي') || text.includes('شوفان');
+
+                if (isProteinCalc) {
+                    const recMin = Math.round(userWeight * 1.8);
+                    const recMax = Math.round(userWeight * 2.2);
                     resp = `
-                        <p>💪 <strong>خطة Gemini AI للتمارين والمقاومة:</strong></p>
+                        <p>🥩 <strong>حساب احتياجك اليومي من البروتين الذكي:</strong></p>
+                        <p>بناءً على وزنك الحالي المعتمد (<strong>${userWeight} كجم</strong>) وبناءً على التوصية الرياضية لبناء العضلات والتنشيف (1.8g - 2.2g لكل كجم):</p>
+                        <ul style="margin-top:6px; margin-right:18px; line-height:1.6">
+                            <li>🔥 <strong>الاحتياج اليومي المطلوب:</strong> <span style="color:var(--ring-stand); font-size:1.1rem; font-weight:800">${recMin}g إلى ${recMax}g جرام بروتين يومياً</span></li>
+                            <li>💡 <strong>التوزيع التقديري:</strong> مقسمة على 3 إلى 4 وجبات (حوالي 35g - 45g في كل وجبة).</li>
+                        </ul>
+                        <div style="margin-top:10px">
+                            <button class="ios-primary-btn" style="padding:6px 14px; font-size:0.78rem; width:auto" onclick="FitPulseApp.openCalcModal()">⚖️ تعديل الوزن والطول وحساب السعرات الكاملة</button>
+                        </div>
+                    `;
+                } else if (isFatLoss) {
+                    resp = `
+                        <p>🔥 <strong>دليل Gemini AI للتخسيس والتنشيف النظيف:</strong></p>
                         <ol style="margin-top:6px; margin-right:18px; line-height:1.6">
-                            <li><strong>اليوم الأول:</strong> صدر + ترايسبس (4 تمارين تركيز)</li>
-                            <li><strong>اليوم الثاني:</strong> ظهر + بايسبس (4 تمارين سحب)</li>
-                            <li><strong>اليوم الثالث:</strong> راحة واستشفاء عضلي 🧘‍♂️</li>
-                            <li><strong>اليوم الرابع:</strong> أكتاف + بطن + كارديو 20 دقيقة</li>
-                            <li><strong>اليوم الخامس:</strong> أرجل + سمانة</li>
+                            <li><strong>عجز السعرات:</strong> تناول سعرات أقل بـ 400 - 500 kcal من احتياجك اليومي.</li>
+                            <li><strong>رفع البروتين:</strong> المحافظة على (2.0g بروتين لكل كجم) لحماية الكتلة العضلية من الهدم.</li>
+                            <li><strong>التمارين:</strong> الاستمرار بتمارين المقاومة (3-5 أيام) + 8000 إلى 10,000 خطوة يومياً.</li>
                         </ol>
                     `;
-                } else if (text.includes('زيادة') || text.includes('أطعمة') || text.includes('قائمة')) {
+                } else if (isWorkout) {
                     resp = `
-                        <p>🥩 <strong>أهم الأطعمة الغنية بالبروتين النقي:</strong></p>
-                        <ul style="margin-top:6px; margin-right:18px">
-                            <li>🍗 100g صدر دجاج: 31g بروتين (165 kcal)</li>
-                            <li>🥩 100g لحم بقر صافي: 26g بروتين (210 kcal)</li>
-                            <li>🐟 100g تونة: 25g بروتين (116 kcal)</li>
-                            <li>🍳 3 بيضات كاملة: 18g بروتين (210 kcal)</li>
-                            <li>🥛 شوب واي بروتين: 25g بروتين (120 kcal)</li>
+                        <p>💪 <strong>برنامج تمارين المقاومة والبناء العضلي (4 أيام):</strong></p>
+                        <ul style="margin-top:6px; margin-right:18px; line-height:1.6">
+                            <li><strong>اليوم 1 (سحب):</strong> ظهر + بايسبس + أكتاف خلفية (4 تمارين 3 الجولات)</li>
+                            <li><strong>اليوم 2 (دفع):</strong> صدر + أكتاف أمامي/جانبي + ترايسبس</li>
+                            <li><strong>اليوم 3 (أرجل):</strong> سكوات + طعن + سمانة + بطن</li>
+                            <li><strong>اليوم 4 (علوي شامل):</strong> تمارين مركة للكتلة العضلية</li>
                         </ul>
                     `;
-                } else {
+                } else if (isFoodItem) {
+                    const parsed = this.parseMeal(text);
                     resp = `
                         <p>✨ <strong>تحليل جيميناي للوجبة: "${text}"</strong></p>
                         <ul style="margin-top:6px; margin-right:18px">
@@ -1536,6 +1777,16 @@ body {
                             <li>🥑 الدهون: ${parsed.fats}g</li>
                         </ul>
                         <button class="ios-primary-btn" style="padding:6px 14px; font-size:0.78rem; margin-top:8px; width:auto" onclick="FitPulseApp.logParsedMeal('${parsed.name}', ${parsed.calories}, ${parsed.protein}, ${parsed.carbs}, ${parsed.fats})">+ حفظ بالجدول تلقائياً</button>
+                    `;
+                } else {
+                    resp = `
+                        <p>✨ <strong>Gemini AI:</strong> مرحباً بك! يمكنني مساعدتك في:</p>
+                        <ul style="margin-top:6px; margin-right:18px; line-height:1.6">
+                            <li>🥩 حساب احتياجك اليومي من البروتين حسب وزنك وطولك.</li>
+                            <li>🍱 تحليل الوجبة وحساب السعرات والماكروز تلقائياً.</li>
+                            <li>💪 تصميم خطة تمارين رياضة للتنشيف أو التضخيم.</li>
+                        </ul>
+                        <p style="margin-top:6px; font-size:0.8rem; color:var(--ios-text-sub)">جرب كتابة: "وزني 75 كم أحتاج بروتين" أو "أكلت 200 جرام صدر دجاج".</p>
                     `;
                 }
 
@@ -1548,7 +1799,7 @@ body {
                     otherBox.innerHTML += aiHtml;
                     otherBox.scrollTop = otherBox.scrollHeight;
                 }
-            }, 600);
+            }, 500);
         },
 
         parseMeal(text) {
@@ -1558,6 +1809,8 @@ body {
             if (text.includes('رز') || text.includes('أرز')) { calories += 180; carbs += 38; }
             if (text.includes('بيض')) { calories = 240; protein = 18; carbs = 4; fats = 14; }
             if (text.includes('شاورما')) { calories = 550; protein = 32; carbs = 45; fats = 22; }
+            if (text.includes('تونة')) { calories = 210; protein = 32; carbs = 2; fats = 8; }
+            if (text.includes('واي') || text.includes('شيك')) { calories = 140; protein = 26; carbs = 3; fats = 2; }
             return { name: text.length > 30 ? text.substring(0, 30) + '...' : text, calories, protein, carbs, fats };
         },
 
@@ -1670,7 +1923,7 @@ body {
                         type: 'doughnut',
                         data: {
                             labels: ['بروتين', 'كارب', 'دهون'],
-                            datasets: [{ data: [144, 116, 50], backgroundColor: ['#0a84ff', '#ff9f0a', '#bf5af2'] }]
+                            datasets: [{ data: [150, 220, 70], backgroundColor: ['#0a84ff', '#ff9f0a', '#bf5af2'] }]
                         },
                         options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#8e8e93' } } } }
                     });
