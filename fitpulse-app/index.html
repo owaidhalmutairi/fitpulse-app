@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#000000">
-    <title>Fitness+ | الصحة واللياقة بنمط آبل 2026</title>
+    <title>Fitness+ | الصحة واللياقة 2026</title>
     
     <!-- Google Fonts: Readex Pro & SF Pro style Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -70,7 +70,7 @@ body {
 ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 10px; }
 
 /* ==========================================================================
-   APP HEADER & NAVIGATION (iOS 18 Native Style)
+   APP HEADER & NAVIGATION
    ========================================================================== */
 
 .app-header {
@@ -81,7 +81,7 @@ body {
     backdrop-filter: blur(25px) saturate(180%);
     -webkit-backdrop-filter: blur(25px) saturate(180%);
     border-bottom: 1px solid var(--ios-glass-border);
-    padding: 16px 24px;
+    padding: 14px 20px;
 }
 
 .header-container {
@@ -90,6 +90,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .user-profile-badge {
@@ -99,8 +101,8 @@ body {
 }
 
 .profile-avatar {
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--ring-move), var(--ring-purple));
     display: flex;
@@ -111,38 +113,39 @@ body {
 }
 
 .user-info h2 {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-weight: 800;
     letter-spacing: -0.3px;
 }
 
 .user-info p {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     color: var(--ios-text-sub);
 }
 
 .header-right-actions {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
+    flex-wrap: wrap;
 }
 
 .watch-status-pill {
     background: rgba(50, 215, 75, 0.12);
     border: 1px solid rgba(50, 215, 75, 0.3);
-    padding: 6px 14px;
+    padding: 6px 12px;
     border-radius: var(--radius-ios-pill);
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     font-weight: 700;
     color: var(--ring-exercise);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .pulse-dot {
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     background: var(--ring-exercise);
     box-shadow: 0 0 10px var(--ring-exercise);
@@ -154,14 +157,32 @@ body {
     100% { opacity: 1; }
 }
 
+.ios-btn-reset {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--ios-glass-border);
+    border-radius: var(--radius-ios-pill);
+    color: var(--ios-text-sub);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ios-btn-reset:hover {
+    background: rgba(255, 45, 85, 0.2);
+    color: #fff;
+    border-color: var(--ring-move);
+}
+
 .ios-add-btn {
     background: var(--ring-move);
     border: none;
     border-radius: var(--radius-ios-pill);
     color: #fff;
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    padding: 10px 20px;
+    padding: 8px 18px;
     cursor: pointer;
     box-shadow: 0 4px 20px rgba(255, 45, 85, 0.4);
     transition: transform 0.2s ease;
@@ -177,8 +198,8 @@ body {
 
 .main-content {
     max-width: 1200px;
-    margin: 24px auto 0;
-    padding: 0 20px;
+    margin: 20px auto 0;
+    padding: 0 16px;
 }
 
 .tab-pane {
@@ -198,7 +219,7 @@ body {
 .grid-layout {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    gap: 20px;
+    gap: 16px;
 }
 
 .ios-card {
@@ -207,7 +228,7 @@ body {
     -webkit-backdrop-filter: blur(30px) saturate(190%);
     border: 1px solid var(--ios-glass-border);
     border-radius: var(--radius-ios-card);
-    padding: 24px;
+    padding: 20px;
     position: relative;
     overflow: hidden;
     transition: transform 0.2s ease, border-color 0.2s ease;
@@ -234,15 +255,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 30px;
+    gap: 24px;
     flex-wrap: wrap;
     background: linear-gradient(135deg, rgba(30, 30, 35, 0.9) 0%, rgba(15, 15, 20, 0.9) 100%);
 }
 
 .rings-wrapper {
     position: relative;
-    width: 220px;
-    height: 220px;
+    width: 200px;
+    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -271,28 +292,28 @@ body {
 .rings-legend-grid {
     flex: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
 }
 
 .ring-stat-item {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--ios-glass-border);
-    border-radius: 20px;
-    padding: 16px;
+    border-radius: 18px;
+    padding: 14px;
 }
 
 .ring-stat-header {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 0.82rem;
+    gap: 6px;
+    font-size: 0.8rem;
     color: var(--ios-text-sub);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .ring-stat-val {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 800;
 }
 
@@ -300,7 +321,7 @@ body {
     height: 6px;
     background: rgba(255, 255, 255, 0.08);
     border-radius: 10px;
-    margin-top: 10px;
+    margin-top: 8px;
     overflow: hidden;
 }
 
@@ -311,13 +332,13 @@ body {
 }
 
 /* ==========================================================================
-   MEAL & WORKOUT LISTS (iOS Inset Grouped Table Style)
+   MEAL & WORKOUT LISTS
    ========================================================================== */
 
 .card-title {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     font-weight: 800;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -326,14 +347,14 @@ body {
 .ios-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
 
 .ios-list-item {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--ios-glass-border);
-    border-radius: 18px;
-    padding: 14px 18px;
+    border-radius: 16px;
+    padding: 12px 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -347,38 +368,38 @@ body {
 .item-left-info {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
 }
 
 .item-icon-box {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
     background: rgba(255, 255, 255, 0.06);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .item-details h4 {
-    font-size: 0.92rem;
+    font-size: 0.88rem;
     font-weight: 700;
 }
 
 .item-details p {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     color: var(--ios-text-sub);
     margin-top: 2px;
 }
 
 .item-value {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 800;
 }
 
 /* ==========================================================================
-   GEMINI AI CONSULTANT (iOS iMessage Style)
+   GEMINI AI CONSULTANT (iMessage Style)
    ========================================================================== */
 
 .chat-box-container {
@@ -391,7 +412,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-top: 14px;
+    margin-top: 12px;
 }
 
 .chat-bubble-user {
@@ -401,7 +422,7 @@ body {
     padding: 10px 16px;
     border-radius: 18px 18px 4px 18px;
     font-size: 0.88rem;
-    max-width: 80%;
+    max-width: 82%;
     line-height: 1.4;
 }
 
@@ -410,7 +431,7 @@ body {
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid var(--ios-glass-border);
     color: #fff;
-    padding: 12px 18px;
+    padding: 12px 16px;
     border-radius: 18px 18px 18px 4px;
     font-size: 0.88rem;
     max-width: 85%;
@@ -419,8 +440,8 @@ body {
 
 .chat-input-bar {
     display: flex;
-    gap: 10px;
-    margin-top: 14px;
+    gap: 8px;
+    margin-top: 12px;
 }
 
 .chat-input-bar input {
@@ -428,9 +449,9 @@ body {
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid var(--ios-glass-border);
     border-radius: var(--radius-ios-pill);
-    padding: 12px 20px;
+    padding: 12px 18px;
     color: #fff;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     outline: none;
 }
 
@@ -438,7 +459,7 @@ body {
     background: var(--ring-stand);
     border: none;
     border-radius: var(--radius-ios-pill);
-    padding: 0 22px;
+    padding: 0 20px;
     color: #fff;
     font-weight: 700;
     cursor: pointer;
@@ -450,14 +471,14 @@ body {
     gap: 8px;
     overflow-x: auto;
     padding-bottom: 6px;
-    margin-top: 12px;
+    margin-top: 10px;
 }
 
 .chip-btn {
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid var(--ios-glass-border);
     color: var(--ios-text-main);
-    padding: 8px 16px;
+    padding: 6px 14px;
     border-radius: var(--radius-ios-pill);
     font-size: 0.78rem;
     font-weight: 600;
@@ -496,10 +517,10 @@ body {
 .modal-sheet {
     background: rgba(28, 28, 30, 0.96);
     border-top: 1px solid var(--ios-glass-border);
-    border-radius: 32px 32px 0 0;
+    border-radius: 28px 28px 0 0;
     width: 100%;
     max-width: 600px;
-    padding: 30px;
+    padding: 24px 24px 36px;
     box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8);
 }
 
@@ -508,18 +529,18 @@ body {
     height: 5px;
     background: rgba(255, 255, 255, 0.3);
     border-radius: 10px;
-    margin: 0 auto 20px;
+    margin: 0 auto 16px;
 }
 
 .form-group-ios {
-    margin-bottom: 16px;
+    margin-bottom: 14px;
 }
 
 .form-group-ios label {
     display: block;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     color: var(--ios-text-sub);
-    margin-bottom: 6px;
+    margin-bottom: 5px;
 }
 
 .form-group-ios input, .form-group-ios select {
@@ -527,16 +548,16 @@ body {
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid var(--ios-glass-border);
     border-radius: 14px;
-    padding: 14px 18px;
+    padding: 12px 16px;
     color: #fff;
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     outline: none;
 }
 
 .form-row-ios {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 10px;
 }
 
 .ios-primary-btn {
@@ -544,10 +565,10 @@ body {
     background: var(--ring-move);
     border: none;
     border-radius: var(--radius-ios-pill);
-    padding: 14px;
+    padding: 12px;
     color: #fff;
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     cursor: pointer;
     box-shadow: 0 4px 20px rgba(255, 45, 85, 0.4);
 }
@@ -556,7 +577,7 @@ body {
     background: rgba(255, 255, 255, 0.08);
     border: none;
     border-radius: var(--radius-ios-pill);
-    padding: 14px 24px;
+    padding: 12px 20px;
     color: var(--ios-text-sub);
     font-weight: 600;
     cursor: pointer;
@@ -573,7 +594,7 @@ body {
     backdrop-filter: blur(30px) saturate(200%);
     -webkit-backdrop-filter: blur(30px) saturate(200%);
     border-top: 1px solid var(--ios-glass-border);
-    padding: 10px 16px 24px;
+    padding: 8px 12px 20px;
     z-index: 500;
     display: flex;
     justify-content: space-around;
@@ -584,18 +605,18 @@ body {
     background: transparent;
     border: none;
     color: var(--ios-text-tertiary);
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3px;
+    gap: 2px;
     cursor: pointer;
     transition: color 0.2s ease, transform 0.2s ease;
-    width: 64px;
+    width: 60px;
 }
 
 .ios-tab-item span {
-    font-size: 0.68rem;
+    font-size: 0.65rem;
     font-weight: 600;
 }
 
@@ -628,6 +649,7 @@ body {
                     <div class="pulse-dot"></div>
                     <span id="sidebarBpm">74 BPM</span>
                 </div>
+                <button class="ios-btn-reset" id="resetTodayBtn">🔄 تصفير اليوم</button>
                 <button class="ios-add-btn" id="quickAddMealBtn">+ وجبة</button>
             </div>
         </div>
@@ -650,15 +672,15 @@ body {
                         <svg class="rings-svg" viewBox="0 0 220 220">
                             <!-- Outer Ring (Move / Red) -->
                             <circle class="ring-bg" cx="110" cy="110" r="90" stroke="var(--ring-move)" />
-                            <circle class="ring-meter" id="ringMove" cx="110" cy="110" r="90" stroke="var(--ring-move)" stroke-dasharray="565" stroke-dashoffset="140" />
+                            <circle class="ring-meter" id="ringMove" cx="110" cy="110" r="90" stroke="var(--ring-move)" stroke-dasharray="565" stroke-dashoffset="565" />
                             
                             <!-- Middle Ring (Exercise / Green) -->
                             <circle class="ring-bg" cx="110" cy="110" r="70" stroke="var(--ring-exercise)" />
-                            <circle class="ring-meter" id="ringExercise" cx="110" cy="110" r="70" stroke="var(--ring-exercise)" stroke-dasharray="440" stroke-dashoffset="90" />
+                            <circle class="ring-meter" id="ringExercise" cx="110" cy="110" r="70" stroke="var(--ring-exercise)" stroke-dasharray="440" stroke-dashoffset="440" />
                             
                             <!-- Inner Ring (Protein / Blue) -->
                             <circle class="ring-bg" cx="110" cy="110" r="50" stroke="var(--ring-stand)" />
-                            <circle class="ring-meter" id="ringStand" cx="110" cy="110" r="50" stroke="var(--ring-stand)" stroke-dasharray="314" stroke-dashoffset="40" />
+                            <circle class="ring-meter" id="ringStand" cx="110" cy="110" r="50" stroke="var(--ring-stand)" stroke-dasharray="314" stroke-dashoffset="314" />
                         </svg>
                     </div>
 
@@ -666,13 +688,13 @@ body {
                         <div class="ring-stat-item">
                             <div class="ring-stat-header">
                                 <span style="color:var(--ring-move); font-size:1.1rem">🔥</span>
-                                <span>الحركة والتنشيف (Kcal)</span>
+                                <span>الميزانية والسعرات (Kcal)</span>
                             </div>
-                            <div class="ring-stat-val" style="color:var(--ring-move)" id="dashNetCal">1,680</div>
+                            <div class="ring-stat-val" style="color:var(--ring-move)" id="dashNetCal">2,200</div>
                             <div class="ring-progress-track">
-                                <div class="ring-progress-fill" id="barCal" style="width: 76%; background: var(--ring-move);"></div>
+                                <div class="ring-progress-fill" id="barCal" style="width: 0%; background: var(--ring-move);"></div>
                             </div>
-                            <div style="font-size:0.75rem; color:var(--ios-text-sub); margin-top:6px">المأكول: <span id="dashEatenCal">1,630</span> | المحروق: <span id="dashBurnedCal">530</span></div>
+                            <div style="font-size:0.75rem; color:var(--ios-text-sub); margin-top:6px">المأكول: <span id="dashEatenCal">0</span> | المحروق: <span id="dashBurnedCal">0</span></div>
                         </div>
 
                         <div class="ring-stat-item">
@@ -680,9 +702,9 @@ body {
                                 <span style="color:var(--ring-exercise); font-size:1.1rem">👟</span>
                                 <span>التمارين والخطوات</span>
                             </div>
-                            <div class="ring-stat-val" style="color:var(--ring-exercise)" id="dashSteps">8,450</div>
+                            <div class="ring-stat-val" style="color:var(--ring-exercise)" id="dashSteps">0</div>
                             <div class="ring-progress-track">
-                                <div class="ring-progress-fill" id="barSteps" style="width: 84%; background: var(--ring-exercise);"></div>
+                                <div class="ring-progress-fill" id="barSteps" style="width: 0%; background: var(--ring-exercise);"></div>
                             </div>
                             <div style="font-size:0.75rem; color:var(--ios-text-sub); margin-top:6px">الهدف: <span id="dashGoalSteps">10,000</span> خطوة</div>
                         </div>
@@ -692,9 +714,9 @@ body {
                                 <span style="color:var(--ring-stand); font-size:1.1rem">🥩</span>
                                 <span>البروتين المستهدف</span>
                             </div>
-                            <div class="ring-stat-val" style="color:var(--ring-stand)"><span id="dashProt">144</span>g</div>
+                            <div class="ring-stat-val" style="color:var(--ring-stand)"><span id="dashProt">0</span>g</div>
                             <div class="ring-progress-track">
-                                <div class="ring-progress-fill" id="barProt" style="width: 90%; background: var(--ring-stand);"></div>
+                                <div class="ring-progress-fill" id="barProt" style="width: 0%; background: var(--ring-stand);"></div>
                             </div>
                             <div style="font-size:0.75rem; color:var(--ios-text-sub); margin-top:6px">الهدف: <span id="dashGoalProt">160</span> جرام</div>
                         </div>
@@ -709,18 +731,18 @@ body {
                     </div>
 
                     <div style="margin-bottom: 16px;">
-                        <div class="ring-stat-header"><span>🥩 البروتين (Protein)</span> <span id="nutPText">0g / 0g</span></div>
-                        <div class="ring-progress-track"><div class="ring-progress-fill" id="nutPBar" style="background:var(--ring-stand)"></div></div>
+                        <div class="ring-stat-header"><span>🥩 البروتين (Protein)</span> <span id="nutPText">0g / 160g (0%)</span></div>
+                        <div class="ring-progress-track"><div class="ring-progress-fill" id="nutPBar" style="background:var(--ring-stand); width:0%"></div></div>
                     </div>
 
                     <div style="margin-bottom: 16px;">
-                        <div class="ring-stat-header"><span>🌾 الكاربوهيدرات (Carbs)</span> <span id="nutCText">0g / 0g</span></div>
-                        <div class="ring-progress-track"><div class="ring-progress-fill" id="nutCBar" style="background:var(--ring-amber)"></div></div>
+                        <div class="ring-stat-header"><span>🌾 الكاربوهيدرات (Carbs)</span> <span id="nutCText">0g / 220g (0%)</span></div>
+                        <div class="ring-progress-track"><div class="ring-progress-fill" id="nutCBar" style="background:var(--ring-amber); width:0%"></div></div>
                     </div>
 
                     <div style="margin-bottom: 16px;">
-                        <div class="ring-stat-header"><span>🥑 الدهون (Fats)</span> <span id="nutFText">0g / 0g</span></div>
-                        <div class="ring-progress-track"><div class="ring-progress-fill" id="nutFBar" style="background:var(--ring-purple)"></div></div>
+                        <div class="ring-stat-header"><span>🥑 الدهون (Fats)</span> <span id="nutFText">0g / 70g (0%)</span></div>
+                        <div class="ring-progress-track"><div class="ring-progress-fill" id="nutFBar" style="background:var(--ring-purple); width:0%"></div></div>
                     </div>
                 </div>
 
@@ -728,6 +750,7 @@ body {
                 <div class="ios-card col-6">
                     <div class="card-title">
                         <span>🍱 وجبات اليوم</span>
+                        <button class="ios-btn-reset" style="padding:4px 10px; font-size:0.72rem" id="loadDemoMealsBtn">إضافة نماذج وجبات 🍽️</button>
                     </div>
                     <div class="ios-list" id="dashMealsList">
                         <!-- Populated by JS -->
@@ -741,20 +764,20 @@ body {
                     </div>
                     
                     <div class="chip-row">
-                        <button class="chip-btn" data-prompt="حلل وجبة اليوم بذكاء الاصطناعي">🥗 تحليل وجبة اليوم</button>
-                        <button class="chip-btn" data-prompt="صمم لي جدول تدريب للمقاومة">🏋️‍♂️ جدول تمارين للمقاومة</button>
-                        <button class="chip-btn" data-prompt="كيف أزيد نسبة البروتين في اليوم؟">🥩 نصائح زيادة البروتين</button>
+                        <button class="chip-btn" data-prompt="احسب لي وجبة 200 جرام دجاج مع رز">🍗 تحليل وجبة دجاج ورز</button>
+                        <button class="chip-btn" data-prompt="صمم لي جدول تمارين للمقاومة">🏋️‍♂️ جدول تمارين للمقاومة</button>
+                        <button class="chip-btn" data-prompt="كيف أزيد نسبة البروتين اليوم؟">🥩 نصائح زيادة البروتين</button>
                     </div>
 
                     <div class="chat-box-container" id="chatLogsArea">
                         <div class="chat-bubble-ai">
-                            أهلاً بك! أنا مساعدك التغذوي والرياضي الذكي المربوط بتطبيق Fitness+. كيف يمكنني مساعدتك في لياقتك اليوم؟
+                            أهلاً بك! أنا مساعدك التغذوي والرياضي الذكي المربوط بتطبيق Fitness+. اكتب وجبتك أو سؤالك وسأجيبك فوراً!
                         </div>
                     </div>
 
                     <div class="chat-input-bar">
-                        <input type="text" id="chatInputText" placeholder="اكتب وجبتك (مثال: صدر دجاج مع رز) أو سؤالك...">
-                        <button id="sendChatBtn">إرسال</button>
+                        <input type="text" id="chatInputText" placeholder="اكتب وجبتك (مثال: 3 بيضات مسلوقة) أو أي سؤال رياضي...">
+                        <button id="sendChatBtn">إرسال ✨</button>
                     </div>
                 </div>
 
@@ -790,15 +813,15 @@ body {
                         </div>
                         <div class="ring-stat-item">
                             <div class="ring-stat-header">المأكول</div>
-                            <div class="ring-stat-val" style="color:var(--ring-move)" id="nutEatenVal">1,630</div>
+                            <div class="ring-stat-val" style="color:var(--ring-move)" id="nutEatenVal">0</div>
                         </div>
                         <div class="ring-stat-item">
                             <div class="ring-stat-header">المحروق</div>
-                            <div class="ring-stat-val" style="color:var(--ring-exercise)" id="nutBurnedVal">530</div>
+                            <div class="ring-stat-val" style="color:var(--ring-exercise)" id="nutBurnedVal">0</div>
                         </div>
                         <div class="ring-stat-item">
                             <div class="ring-stat-header">المتبقي</div>
-                            <div class="ring-stat-val" style="color:var(--ring-stand)" id="nutRemVal">1,100</div>
+                            <div class="ring-stat-val" style="color:var(--ring-stand)" id="nutRemVal">2,200</div>
                         </div>
                     </div>
 
@@ -845,14 +868,28 @@ body {
              TAB 3: GEMINI AI FULL CONSULTANT
              ========================================================================== -->
         <div class="tab-pane" id="tab-gemini-ai">
-            <div class="ios-card col-12" style="padding:30px">
+            <div class="ios-card col-12" style="padding:24px">
                 <div class="card-title">
                     <h2>🤖 مركز استشارات الذكاء الاصطناعي Gemini AI</h2>
                 </div>
-                <div class="chat-box-container" style="height:440px" id="chatLogsAreaFull">
+                <p style="font-size:0.85rem; color:var(--ios-text-sub); margin-bottom:12px">اسأل جيميناي أي سؤال عن التغذية، السعرات، أو تصميم جدول تمارين رياضي مخصص:</p>
+                
+                <div class="chip-row">
+                    <button class="chip-btn" data-prompt="صمم لي برنامج تضخيم عضلات للمبتدئين">💪 برنامج تضخيم للمبتدئين</button>
+                    <button class="chip-btn" data-prompt="احسب لي احتياجي اليومي من البروتين">🥩 حساب البروتين اليومي</button>
+                    <button class="chip-btn" data-prompt="كيف أتخلص من الدهون العنيدة؟">🔥 التخلص من الدهون</button>
+                    <button class="chip-btn" data-prompt="أعطني قائمة بأهم الأطعمة الغنية بالبروتين">🥗 قائمة أطعمة للبروتين</button>
+                </div>
+
+                <div class="chat-box-container" style="height:380px" id="chatLogsAreaFull">
                     <div class="chat-bubble-ai">
-                        مرحباً بك! يمكنك سؤالي عن نصائح التغذية، جداول التدريب، أو التضخيم والتنشيف!
+                        مرحباً بك! أنا مساعد Gemini AI الذكي. يمكنك سؤالي عن نصائح التغذية، جداول التدريب، أو التضخيم والتنشيف!
                     </div>
+                </div>
+
+                <div class="chat-input-bar" style="margin-top:16px">
+                    <input type="text" id="chatInputTextFull" placeholder="اكتب سؤالك لجيميناي هنا (مثال: احسب لي سعرات شاورما دجاج)...">
+                    <button id="sendChatBtnFull">إرسال ✨</button>
                 </div>
             </div>
         </div>
@@ -926,7 +963,7 @@ body {
                     </div>
                     <div style="margin:20px 0;">
                         <div class="ring-stat-val" style="color:var(--ring-move); font-size:2.5rem" id="appleBpmVal">74 BPM</div>
-                        <p style="color:var(--ios-text-sub); font-size:0.85rem">الخطوات: 8,450 | الحرق النشط: 430 kcal</p>
+                        <p style="color:var(--ios-text-sub); font-size:0.85rem">الخطوات: <span id="appleWatchStepsVal">0</span> | الحرق النشط: 0 kcal</p>
                     </div>
                     <div style="display:flex; gap:10px">
                         <button class="ios-secondary-btn sync-btn" data-watch="apple">مزامنة البيانات</button>
@@ -941,7 +978,7 @@ body {
                     </div>
                     <div style="margin:20px 0;">
                         <div class="ring-stat-val" style="color:var(--ring-purple); font-size:2.5rem" id="huaweiBpmVal">72 BPM</div>
-                        <p style="color:var(--ios-text-sub); font-size:0.85rem">الخطوات: 8,450 | نسبة الأكسجين SpO2: 99%</p>
+                        <p style="color:var(--ios-text-sub); font-size:0.85rem">الخطوات: <span id="huaweiWatchStepsVal">0</span> | نسبة الأكسجين SpO2: 99%</p>
                     </div>
                     <div style="display:flex; gap:10px">
                         <button class="ios-secondary-btn sync-btn" data-watch="huawei">مزامنة البيانات</button>
@@ -955,7 +992,7 @@ body {
                         <button class="ios-primary-btn" style="width:auto; padding:8px 16px" id="scanWatchesBtn">إعادة الفحص والاقتران 🔄</button>
                     </div>
                     <div id="syncLogBox" style="background:rgba(0,0,0,0.5); border-radius:16px; padding:16px; font-family:monospace; font-size:0.82rem; color:var(--ring-exercise); height:140px; overflow-y:auto">
-                        [SYSTEM] APPLE & HUAWEI HEALTHKIT CONNECTED SUCCESSFULLY
+                        [SYSTEM] APPLE HEALTHKIT & HUAWEI HEALTH CONNECTED
                     </div>
                 </div>
             </div>
@@ -1095,20 +1132,12 @@ body {
             currentTab: 'dashboard',
             user: { calorieGoal: 2200, proteinGoal: 160, carbsGoal: 220, fatsGoal: 70, stepsGoal: 10000 },
             watches: {
-                apple: { connected: true, heartRate: 74, steps: 8450, calories: 430 },
-                huawei: { connected: true, heartRate: 72, steps: 8450 }
+                apple: { connected: true, heartRate: 74, steps: 0, calories: 0 },
+                huawei: { connected: true, heartRate: 72, steps: 0 }
             },
             today: {
-                meals: [
-                    { id: 'm1', name: '🍳 3 بيضات مسلوقة + خبز بر', category: 'breakfast', calories: 380, protein: 24, carbs: 28, fats: 18 },
-                    { id: 'm2', name: '🍗 صدر دجاج مشوي + رز أبيض', category: 'lunch', calories: 650, protein: 55, carbs: 70, fats: 12 },
-                    { id: 'm3', name: '🥛 شيك بروتين واي', category: 'snacks', calories: 220, protein: 30, carbs: 8, fats: 4 },
-                    { id: 'm4', name: '🥗 سلطة تونة مع زيت زيتون', category: 'dinner', calories: 380, protein: 35, carbs: 12, fats: 16 }
-                ],
-                workouts: [
-                    { id: 'w1', name: '🏃‍♂️ ركض صباحي (Apple Watch)', duration: 30, calories: 280, source: 'Apple Watch' },
-                    { id: 'w2', name: '🏋️‍♂️ تمرين حديد - أكتاف وباي', duration: 45, calories: 250, source: 'Huawei Watch' }
-                ]
+                meals: [],
+                workouts: []
             },
             activeWorkout: { isLive: false, timerId: null, seconds: 0, burnedCalories: 0, heartRate: 110 }
         },
@@ -1119,27 +1148,50 @@ body {
             this.startSimulators();
             this.updateUI();
             this.initCharts();
-            this.logSync('APPLE HEALTHKIT & HUAWEI HEALTH LINKED');
+            this.logSync('APPLE HEALTHKIT & HUAWEI HEALTH INITIALIZED');
         },
 
         loadState() {
             try {
-                const saved = localStorage.getItem('apple_fitness_state_2026');
+                const saved = localStorage.getItem('apple_fitness_state_v3');
                 if (saved) {
                     const parsed = JSON.parse(saved);
-                    if (parsed.meals && parsed.meals.length > 0) this.state.today.meals = parsed.meals;
-                    if (parsed.workouts && parsed.workouts.length > 0) this.state.today.workouts = parsed.workouts;
+                    if (parsed.meals) this.state.today.meals = parsed.meals;
+                    if (parsed.workouts) this.state.today.workouts = parsed.workouts;
+                    if (typeof parsed.steps !== 'undefined') this.state.watches.apple.steps = parsed.steps;
                 }
             } catch (e) {}
         },
 
         saveState() {
             try {
-                localStorage.setItem('apple_fitness_state_2026', JSON.stringify({
+                localStorage.setItem('apple_fitness_state_v3', JSON.stringify({
                     meals: this.state.today.meals,
-                    workouts: this.state.today.workouts
+                    workouts: this.state.today.workouts,
+                    steps: this.state.watches.apple.steps
                 }));
             } catch (e) {}
+        },
+
+        resetToday() {
+            if (confirm('هل انت متأكد من تصفير سجّلات اليوم والبدء من جديد؟')) {
+                this.state.today.meals = [];
+                this.state.today.workouts = [];
+                this.state.watches.apple.steps = 0;
+                this.saveState();
+                this.updateUI();
+                alert('تم تصفير سجّلات اليوم بنجاح! 🔄');
+            }
+        },
+
+        loadDemoMeals() {
+            this.state.today.meals = [
+                { id: 'm1', name: '🍳 3 بيضات مسلوقة + خبز بر', category: 'breakfast', calories: 380, protein: 24, carbs: 28, fats: 18 },
+                { id: 'm2', name: '🍗 صدر دجاج مشوي + رز أبيض', category: 'lunch', calories: 650, protein: 55, carbs: 70, fats: 12 }
+            ];
+            this.state.watches.apple.steps = 4500;
+            this.saveState();
+            this.updateUI();
         },
 
         bindEvents() {
@@ -1149,6 +1201,9 @@ body {
                     if (tab) this.switchTab(tab);
                 });
             });
+
+            document.getElementById('resetTodayBtn')?.addEventListener('click', () => this.resetToday());
+            document.getElementById('loadDemoMealsBtn')?.addEventListener('click', () => this.loadDemoMeals());
 
             document.getElementById('openMealBtn')?.addEventListener('click', () => this.openMealModal());
             document.getElementById('quickAddMealBtn')?.addEventListener('click', () => this.openMealModal());
@@ -1176,14 +1231,27 @@ body {
             });
 
             document.getElementById('aiInputSubmit')?.addEventListener('click', () => this.handleAiAnalysis());
-            document.getElementById('sendChatBtn')?.addEventListener('click', () => this.handleChatSend());
+            
+            // Send Chat Handlers for both tabs
+            document.getElementById('sendChatBtn')?.addEventListener('click', () => this.handleChatSend('chatInputText', 'chatLogsArea'));
+            document.getElementById('sendChatBtnFull')?.addEventListener('click', () => this.handleChatSend('chatInputTextFull', 'chatLogsAreaFull'));
+
+            document.getElementById('chatInputText')?.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') this.handleChatSend('chatInputText', 'chatLogsArea');
+            });
+            document.getElementById('chatInputTextFull')?.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') this.handleChatSend('chatInputTextFull', 'chatLogsAreaFull');
+            });
 
             document.querySelectorAll('.chip-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
-                    const input = document.getElementById('chatInputText');
+                    const prompt = btn.getAttribute('data-prompt');
+                    const activeInputId = this.state.currentTab === 'gemini-ai' ? 'chatInputTextFull' : 'chatInputText';
+                    const activeBoxId = this.state.currentTab === 'gemini-ai' ? 'chatLogsAreaFull' : 'chatLogsArea';
+                    const input = document.getElementById(activeInputId);
                     if (input) {
-                        input.value = btn.getAttribute('data-prompt');
-                        this.handleChatSend();
+                        input.value = prompt;
+                        this.handleChatSend(activeInputId, activeBoxId);
                     }
                 });
             });
@@ -1240,7 +1308,7 @@ body {
             (this.state.today.workouts || []).forEach(w => { burnedCal += Number(w.calories) || 0; });
             const netCal = eatenCal - burnedCal;
             const goalCal = this.state.user.calorieGoal;
-            return { eatenCal, burnedCal, netCal, goalCal, remCal: goalCal - netCal, pGrams, cGrams, fGrams, totalSteps: this.state.watches.apple.steps };
+            return { eatenCal, burnedCal, netCal, goalCal, remCal: Math.max(0, goalCal - netCal), pGrams, cGrams, fGrams, totalSteps: this.state.watches.apple.steps };
         },
 
         updateUI() {
@@ -1253,6 +1321,9 @@ body {
             document.getElementById('dashSteps').textContent = totals.totalSteps.toLocaleString();
             document.getElementById('dashGoalSteps').textContent = this.state.user.stepsGoal.toLocaleString();
             document.getElementById('barSteps').style.width = `${Math.min(100, (totals.totalSteps / this.state.user.stepsGoal) * 100)}%`;
+
+            document.getElementById('appleWatchStepsVal').textContent = totals.totalSteps.toLocaleString();
+            document.getElementById('huaweiWatchStepsVal').textContent = totals.totalSteps.toLocaleString();
 
             document.getElementById('dashProt').textContent = totals.pGrams;
             document.getElementById('dashGoalProt').textContent = this.state.user.proteinGoal;
@@ -1268,14 +1339,18 @@ body {
             document.getElementById('nutBurnedVal').textContent = totals.burnedCal.toLocaleString();
             document.getElementById('nutRemVal').textContent = totals.remCal.toLocaleString();
 
-            document.getElementById('nutPText').textContent = `${totals.pGrams}g / ${this.state.user.proteinGoal}g (${Math.round((totals.pGrams/this.state.user.proteinGoal)*100)}%)`;
-            document.getElementById('nutPBar').style.width = `${Math.min(100, (totals.pGrams/this.state.user.proteinGoal)*100)}%`;
+            const pPct = Math.round((totals.pGrams / this.state.user.proteinGoal) * 100);
+            const cPct = Math.round((totals.cGrams / this.state.user.carbsGoal) * 100);
+            const fPct = Math.round((totals.fGrams / this.state.user.fatsGoal) * 100);
 
-            document.getElementById('nutCText').textContent = `${totals.cGrams}g / ${this.state.user.carbsGoal}g (${Math.round((totals.cGrams/this.state.user.carbsGoal)*100)}%)`;
-            document.getElementById('nutCBar').style.width = `${Math.min(100, (totals.cGrams/this.state.user.carbsGoal)*100)}%`;
+            document.getElementById('nutPText').textContent = `${totals.pGrams}g / ${this.state.user.proteinGoal}g (${pPct}%)`;
+            document.getElementById('nutPBar').style.width = `${Math.min(100, pPct)}%`;
 
-            document.getElementById('nutFText').textContent = `${totals.fGrams}g / ${this.state.user.fatsGoal}g (${Math.round((totals.fGrams/this.state.user.fatsGoal)*100)}%)`;
-            document.getElementById('nutFBar').style.width = `${Math.min(100, (totals.fGrams/this.state.user.fatsGoal)*100)}%`;
+            document.getElementById('nutCText').textContent = `${totals.cGrams}g / ${this.state.user.carbsGoal}g (${cPct}%)`;
+            document.getElementById('nutCBar').style.width = `${Math.min(100, cPct)}%`;
+
+            document.getElementById('nutFText').textContent = `${totals.fGrams}g / ${this.state.user.fatsGoal}g (${fPct}%)`;
+            document.getElementById('nutFBar').style.width = `${Math.min(100, fPct)}%`;
 
             this.renderMeals();
             this.renderWorkouts();
@@ -1305,7 +1380,7 @@ body {
                             <button style="border:none; background:none; color:var(--ring-move); font-size:1.2rem; cursor:pointer" onclick="FitPulseApp.deleteMeal('${m.id}')">&times;</button>
                         </div>
                     </div>
-                `).join('') || '<p class="text-center" style="color:var(--ios-text-sub)">لا توجد وجبات مسجلة</p>';
+                `).join('') || '<p class="text-center" style="color:var(--ios-text-sub); padding:10px 0">لا توجد وجبات مسجلة اليوم 👍</p>';
             }
 
             ['breakfast', 'lunch', 'dinner', 'snacks'].forEach(cat => {
@@ -1319,7 +1394,7 @@ body {
                             </div>
                             <span class="item-value" style="color:var(--ring-move)">${m.calories} kcal</span>
                         </div>
-                    `).join('') || '<p class="text-center" style="font-size:0.78rem; color:var(--ios-text-sub)">لم تضاف وجبات</p>';
+                    `).join('') || '<p class="text-center" style="font-size:0.75rem; color:var(--ios-text-sub)">لم تضاف وجبات</p>';
                 }
             });
         },
@@ -1348,7 +1423,7 @@ body {
                         <button style="border:none; background:none; color:var(--ring-move); font-size:1.2rem; cursor:pointer" onclick="FitPulseApp.deleteWorkout('${w.id}')">&times;</button>
                     </div>
                 </div>
-            `).join('') || '<p class="text-center" style="color:var(--ios-text-sub)">لا توجد تمارين مسجلة</p>';
+            `).join('') || '<p class="text-center" style="color:var(--ios-text-sub); padding:10px 0">لا توجد تمارين مسجلة اليوم</p>';
 
             if (dashList) dashList.innerHTML = html;
             if (fullList) fullList.innerHTML = html;
@@ -1402,55 +1477,87 @@ body {
                         <button class="ios-primary-btn" style="padding:6px 14px; font-size:0.78rem; width:auto" onclick="FitPulseApp.logParsedMeal('${parsed.name}', ${parsed.calories}, ${parsed.protein}, ${parsed.carbs}, ${parsed.fats})">+ إضافة</button>
                     </div>
                 `;
-            }, 600);
+            }, 500);
         },
 
-        handleChatSend() {
-            const input = document.getElementById('chatInputText');
-            const box = document.getElementById('chatLogsArea');
-            const boxFull = document.getElementById('chatLogsAreaFull');
+        handleChatSend(inputId = 'chatInputText', boxId = 'chatLogsArea') {
+            const input = document.getElementById(inputId);
+            const box = document.getElementById(boxId);
             if (!input) return;
             const text = input.value.trim();
             if (!text) return;
 
             const userHtml = `<div class="chat-bubble-user">${text}</div>`;
             if (box) box.innerHTML += userHtml;
-            if (boxFull) boxFull.innerHTML += userHtml;
             input.value = '';
-
             if (box) box.scrollTop = box.scrollHeight;
-            if (boxFull) boxFull.scrollTop = boxFull.scrollHeight;
+
+            // Also mirror to other box if present
+            const otherBoxId = boxId === 'chatLogsArea' ? 'chatLogsAreaFull' : 'chatLogsArea';
+            const otherBox = document.getElementById(otherBoxId);
+            if (otherBox) {
+                otherBox.innerHTML += userHtml;
+                otherBox.scrollTop = otherBox.scrollHeight;
+            }
 
             setTimeout(() => {
                 const parsed = this.parseMeal(text);
-                let resp = `<p>✨ Gemini AI: تم تحليل طلبك ومتابعة السعرات والتمارين!</p>`;
-                if (text.includes('احسب') || text.includes('أكلت') || text.includes('دجاج') || text.includes('لحم') || text.includes('بيض')) {
+                let resp = '';
+
+                if (text.includes('برنامج') || text.includes('جدول') || text.includes('مقاومة') || text.includes('تضخيم')) {
                     resp = `
-                        <p>تحليل جيميناي للوجبة <strong>"${text}"</strong>:</p>
-                        <ul style="margin-top:6px; margin-right:16px">
-                            <li>🔥 السعرات: ${parsed.calories} kcal</li>
+                        <p>💪 <strong>خطة Gemini AI للتمارين والمقاومة:</strong></p>
+                        <ol style="margin-top:6px; margin-right:18px; line-height:1.6">
+                            <li><strong>اليوم الأول:</strong> صدر + ترايسبس (4 تمارين تركيز)</li>
+                            <li><strong>اليوم الثاني:</strong> ظهر + بايسبس (4 تمارين سحب)</li>
+                            <li><strong>اليوم الثالث:</strong> راحة واستشفاء عضلي 🧘‍♂️</li>
+                            <li><strong>اليوم الرابع:</strong> أكتاف + بطن + كارديو 20 دقيقة</li>
+                            <li><strong>اليوم الخامس:</strong> أرجل + سمانة</li>
+                        </ol>
+                    `;
+                } else if (text.includes('زيادة') || text.includes('أطعمة') || text.includes('قائمة')) {
+                    resp = `
+                        <p>🥩 <strong>أهم الأطعمة الغنية بالبروتين النقي:</strong></p>
+                        <ul style="margin-top:6px; margin-right:18px">
+                            <li>🍗 100g صدر دجاج: 31g بروتين (165 kcal)</li>
+                            <li>🥩 100g لحم بقر صافي: 26g بروتين (210 kcal)</li>
+                            <li>🐟 100g تونة: 25g بروتين (116 kcal)</li>
+                            <li>🍳 3 بيضات كاملة: 18g بروتين (210 kcal)</li>
+                            <li>🥛 شوب واي بروتين: 25g بروتين (120 kcal)</li>
+                        </ul>
+                    `;
+                } else {
+                    resp = `
+                        <p>✨ <strong>تحليل جيميناي للوجبة: "${text}"</strong></p>
+                        <ul style="margin-top:6px; margin-right:18px">
+                            <li>🔥 السعرات التقديرية: ${parsed.calories} kcal</li>
                             <li>🥩 البروتين: ${parsed.protein}g</li>
-                            <li>🌾 الكارب: ${parsed.carbs}g</li>
+                            <li>🌾 الكاربوهيدرات: ${parsed.carbs}g</li>
                             <li>🥑 الدهون: ${parsed.fats}g</li>
                         </ul>
-                        <button class="ios-primary-btn" style="padding:6px 14px; font-size:0.78rem; margin-top:10px; width:auto" onclick="FitPulseApp.logParsedMeal('${parsed.name}', ${parsed.calories}, ${parsed.protein}, ${parsed.carbs}, ${parsed.fats})">+ حفظ بالجدول</button>
+                        <button class="ios-primary-btn" style="padding:6px 14px; font-size:0.78rem; margin-top:8px; width:auto" onclick="FitPulseApp.logParsedMeal('${parsed.name}', ${parsed.calories}, ${parsed.protein}, ${parsed.carbs}, ${parsed.fats})">+ حفظ بالجدول تلقائياً</button>
                     `;
                 }
 
                 const aiHtml = `<div class="chat-bubble-ai">${resp}</div>`;
-                if (box) box.innerHTML += aiHtml;
-                if (boxFull) boxFull.innerHTML += aiHtml;
-
-                if (box) box.scrollTop = box.scrollHeight;
-                if (boxFull) boxFull.scrollTop = boxFull.scrollHeight;
-            }, 800);
+                if (box) {
+                    box.innerHTML += aiHtml;
+                    box.scrollTop = box.scrollHeight;
+                }
+                if (otherBox) {
+                    otherBox.innerHTML += aiHtml;
+                    otherBox.scrollTop = otherBox.scrollHeight;
+                }
+            }, 600);
         },
 
         parseMeal(text) {
-            let calories = 480, protein = 38, carbs = 42, fats = 12;
+            let calories = 450, protein = 35, carbs = 40, fats = 12;
             if (text.includes('دجاج')) { calories += 150; protein += 25; }
             if (text.includes('لحم')) { calories += 220; protein += 30; fats += 10; }
-            if (text.includes('رز')) { calories += 200; carbs += 40; }
+            if (text.includes('رز') || text.includes('أرز')) { calories += 180; carbs += 38; }
+            if (text.includes('بيض')) { calories = 240; protein = 18; carbs = 4; fats = 14; }
+            if (text.includes('شاورما')) { calories = 550; protein = 32; carbs = 45; fats = 22; }
             return { name: text.length > 30 ? text.substring(0, 30) + '...' : text, calories, protein, carbs, fats };
         },
 
@@ -1458,7 +1565,7 @@ body {
             this.state.today.meals.push({ id: 'm_ai_' + Date.now(), name: `✨ ${name}`, category: 'lunch', calories: cal, protein: p, carbs: c, fats: f });
             this.saveState();
             this.updateUI();
-            alert('تم حفظ الوجبة بالنظام!');
+            alert('تم إضافة الوجبة لجدول اليوم بنجاح!');
         },
 
         handleManualWorkoutSubmit() {
@@ -1499,7 +1606,7 @@ body {
                 if (stopBtn) stopBtn.classList.add('hidden');
 
                 if (active.seconds > 3) {
-                    this.state.today.workouts.push({ id: 'w_live_' + Date.now(), name: '🏃‍♂️ تمرين مباشر Fitness+ Live', duration: Math.max(1, Math.round(active.seconds/60)), calories: active.burnedCalories, source: 'Apple & Huawei Watch' });
+                    this.state.today.workouts.push({ id: 'w_live_' + Date.now(), name: '🏃‍♂️ تمرين مباشر Fitness+ Live', duration: Math.max(1, Math.round(active.seconds/60)), calories: active.burnedCalories, source: 'Apple Watch' });
                     this.saveState();
                     this.updateUI();
                     alert(`تم إنهاء التمرين وحفظ حرق ${active.burnedCalories} سعرة!`);
@@ -1527,10 +1634,11 @@ body {
         scanWatches() {
             this.logSync('APPLE HEALTHKIT: SCANNING WATCHES...');
             setTimeout(() => {
-                this.state.watches.apple.steps += 140;
+                this.state.watches.apple.steps += 350;
+                this.saveState();
                 this.updateUI();
-                this.logSync('APPLE WATCH & HUAWEI WATCH SYNCED');
-            }, 800);
+                this.logSync('APPLE WATCH & HUAWEI WATCH SYNCED (+350 Steps)');
+            }, 600);
         },
 
         logSync(msg) {
